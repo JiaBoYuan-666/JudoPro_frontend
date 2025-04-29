@@ -39347,3 +39347,97 @@ org.apache.lucene.store.AlreadyClosedException: this IndexWriter is closed
 17:05:08.121 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(73) - 解析柔道家详情页[https://www.ijf.org/judoka/45514]
 17:05:08.232 [pool-1-thread-1] INFO  cn.edu.bistu.cs.ir.index.IdxService.addDocument(68) - 成功将ID为[45514]的柔道家信息加入索引
 17:05:08.232 [pool-1-thread-1] INFO  c.e.bistu.cs.ir.index.LucenePipeline.process(42) - 成功将ID为[45514]的柔道家信息写入索引
+17:05:10.835 [pool-1-thread-1] INFO  u.c.w.d.HttpClientDownloader.download(86) - downloading page success https://www.ijf.org/judoka/45934
+17:05:10.835 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(73) - 解析柔道家详情页[https://www.ijf.org/judoka/45934]
+17:05:10.963 [pool-1-thread-1] INFO  cn.edu.bistu.cs.ir.index.IdxService.addDocument(68) - 成功将ID为[45934]的柔道家信息加入索引
+17:05:10.963 [pool-1-thread-1] INFO  c.e.bistu.cs.ir.index.LucenePipeline.process(42) - 成功将ID为[45934]的柔道家信息写入索引
+17:05:13.685 [pool-1-thread-1] INFO  u.c.w.d.HttpClientDownloader.download(86) - downloading page success https://www.ijf.org/judoka/46169
+17:05:13.685 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(73) - 解析柔道家详情页[https://www.ijf.org/judoka/46169]
+17:05:13.818 [pool-1-thread-1] INFO  cn.edu.bistu.cs.ir.index.IdxService.addDocument(68) - 成功将ID为[46169]的柔道家信息加入索引
+17:05:13.818 [pool-1-thread-1] INFO  c.e.bistu.cs.ir.index.LucenePipeline.process(42) - 成功将ID为[46169]的柔道家信息写入索引
+17:05:16.362 [pool-1-thread-1] INFO  u.c.w.d.HttpClientDownloader.download(86) - downloading page success https://www.ijf.org/judoka/81069
+17:05:16.363 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(73) - 解析柔道家详情页[https://www.ijf.org/judoka/81069]
+17:05:16.448 [pool-1-thread-1] INFO  cn.edu.bistu.cs.ir.index.IdxService.addDocument(68) - 成功将ID为[81069]的柔道家信息加入索引
+17:05:16.448 [pool-1-thread-1] INFO  c.e.bistu.cs.ir.index.LucenePipeline.process(42) - 成功将ID为[81069]的柔道家信息写入索引
+17:05:19.026 [pool-1-thread-1] INFO  u.c.w.d.HttpClientDownloader.download(86) - downloading page success https://www.ijf.org/judoka/64360
+17:05:19.027 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(73) - 解析柔道家详情页[https://www.ijf.org/judoka/64360]
+17:05:19.116 [pool-1-thread-1] INFO  cn.edu.bistu.cs.ir.index.IdxService.addDocument(68) - 成功将ID为[64360]的柔道家信息加入索引
+17:05:19.116 [pool-1-thread-1] INFO  c.e.bistu.cs.ir.index.LucenePipeline.process(42) - 成功将ID为[64360]的柔道家信息写入索引
+17:05:21.665 [pool-1-thread-1] INFO  u.c.w.d.HttpClientDownloader.download(86) - downloading page success https://www.ijf.org/judoka/27336
+17:05:21.665 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(73) - 解析柔道家详情页[https://www.ijf.org/judoka/27336]
+17:05:21.758 [pool-1-thread-1] INFO  cn.edu.bistu.cs.ir.index.IdxService.addDocument(68) - 成功将ID为[27336]的柔道家信息加入索引
+17:05:21.758 [pool-1-thread-1] INFO  c.e.bistu.cs.ir.index.LucenePipeline.process(42) - 成功将ID为[27336]的柔道家信息写入索引
+17:05:24.318 [pool-1-thread-1] INFO  u.c.w.d.HttpClientDownloader.download(86) - downloading page success https://www.ijf.org/judoka/7241
+17:05:24.319 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(73) - 解析柔道家详情页[https://www.ijf.org/judoka/7241]
+17:05:24.406 [pool-1-thread-1] INFO  cn.edu.bistu.cs.ir.index.IdxService.addDocument(68) - 成功将ID为[7241]的柔道家信息加入索引
+17:05:24.406 [pool-1-thread-1] INFO  c.e.bistu.cs.ir.index.LucenePipeline.process(42) - 成功将ID为[7241]的柔道家信息写入索引
+17:05:27.073 [pool-1-thread-1] INFO  u.c.w.d.HttpClientDownloader.download(86) - downloading page success https://www.ijf.org/judoka/8225
+17:05:27.073 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(73) - 解析柔道家详情页[https://www.ijf.org/judoka/8225]
+17:05:27.164 [pool-1-thread-1] INFO  cn.edu.bistu.cs.ir.index.IdxService.addDocument(68) - 成功将ID为[8225]的柔道家信息加入索引
+17:05:27.164 [pool-1-thread-1] INFO  c.e.bistu.cs.ir.index.LucenePipeline.process(42) - 成功将ID为[8225]的柔道家信息写入索引
+17:05:29.844 [pool-1-thread-1] INFO  u.c.w.d.HttpClientDownloader.download(86) - downloading page success https://www.ijf.org/judoka/13414
+17:05:29.845 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(73) - 解析柔道家详情页[https://www.ijf.org/judoka/13414]
+17:05:29.938 [pool-1-thread-1] INFO  cn.edu.bistu.cs.ir.index.IdxService.addDocument(68) - 成功将ID为[13414]的柔道家信息加入索引
+17:05:29.938 [pool-1-thread-1] INFO  c.e.bistu.cs.ir.index.LucenePipeline.process(42) - 成功将ID为[13414]的柔道家信息写入索引
+17:05:32.660 [pool-1-thread-1] INFO  u.c.w.d.HttpClientDownloader.download(86) - downloading page success https://www.ijf.org/judoka/84295
+17:05:32.661 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(73) - 解析柔道家详情页[https://www.ijf.org/judoka/84295]
+17:05:32.761 [pool-1-thread-1] INFO  cn.edu.bistu.cs.ir.index.IdxService.addDocument(68) - 成功将ID为[84295]的柔道家信息加入索引
+17:05:32.761 [pool-1-thread-1] INFO  c.e.bistu.cs.ir.index.LucenePipeline.process(42) - 成功将ID为[84295]的柔道家信息写入索引
+17:05:35.348 [pool-1-thread-1] INFO  u.c.w.d.HttpClientDownloader.download(86) - downloading page success https://www.ijf.org/judoka/60129
+17:05:35.349 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(73) - 解析柔道家详情页[https://www.ijf.org/judoka/60129]
+17:05:35.424 [pool-1-thread-1] INFO  cn.edu.bistu.cs.ir.index.IdxService.addDocument(68) - 成功将ID为[60129]的柔道家信息加入索引
+17:05:35.424 [pool-1-thread-1] INFO  c.e.bistu.cs.ir.index.LucenePipeline.process(42) - 成功将ID为[60129]的柔道家信息写入索引
+17:05:38.114 [pool-1-thread-1] INFO  u.c.w.d.HttpClientDownloader.download(86) - downloading page success https://www.ijf.org/judoka/53551
+17:05:38.115 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(73) - 解析柔道家详情页[https://www.ijf.org/judoka/53551]
+17:05:38.197 [pool-1-thread-1] INFO  cn.edu.bistu.cs.ir.index.IdxService.addDocument(68) - 成功将ID为[53551]的柔道家信息加入索引
+17:05:38.197 [pool-1-thread-1] INFO  c.e.bistu.cs.ir.index.LucenePipeline.process(42) - 成功将ID为[53551]的柔道家信息写入索引
+17:05:40.809 [pool-1-thread-1] INFO  u.c.w.d.HttpClientDownloader.download(86) - downloading page success https://www.ijf.org/judoka/36792
+17:05:40.810 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(73) - 解析柔道家详情页[https://www.ijf.org/judoka/36792]
+17:05:40.898 [pool-1-thread-1] INFO  cn.edu.bistu.cs.ir.index.IdxService.addDocument(68) - 成功将ID为[36792]的柔道家信息加入索引
+17:05:40.898 [pool-1-thread-1] INFO  c.e.bistu.cs.ir.index.LucenePipeline.process(42) - 成功将ID为[36792]的柔道家信息写入索引
+17:05:43.861 [pool-1-thread-1] INFO  u.c.w.d.HttpClientDownloader.download(86) - downloading page success https://www.ijf.org/judoka?nation=AJU&gender=both&category=all
+17:05:43.862 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(58) - 解析柔道家列表页[https://www.ijf.org/judoka?nation=AJU&gender=both&category=all]
+17:05:43.863 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(60) - 获取柔道家网页共[0]条
+17:05:46.956 [pool-1-thread-1] INFO  u.c.w.d.HttpClientDownloader.download(86) - downloading page success https://www.ijf.org/judoka?nation=GEO&gender=both&category=all
+17:05:46.957 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(58) - 解析柔道家列表页[https://www.ijf.org/judoka?nation=GEO&gender=both&category=all]
+17:05:46.968 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(60) - 获取柔道家网页共[240]条
+17:05:49.993 [pool-1-thread-1] INFO  u.c.w.d.HttpClientDownloader.download(86) - downloading page success https://www.ijf.org/judoka?nation=NIU&gender=both&category=all
+17:05:49.993 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(58) - 解析柔道家列表页[https://www.ijf.org/judoka?nation=NIU&gender=both&category=all]
+17:05:49.995 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(60) - 获取柔道家网页共[0]条
+17:05:52.766 [pool-1-thread-1] INFO  u.c.w.d.HttpClientDownloader.download(86) - downloading page success https://www.ijf.org/judoka/87998
+17:05:52.768 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(73) - 解析柔道家详情页[https://www.ijf.org/judoka/87998]
+17:05:52.865 [pool-1-thread-1] INFO  cn.edu.bistu.cs.ir.index.IdxService.addDocument(68) - 成功将ID为[87998]的柔道家信息加入索引
+17:05:52.865 [pool-1-thread-1] INFO  c.e.bistu.cs.ir.index.LucenePipeline.process(42) - 成功将ID为[87998]的柔道家信息写入索引
+17:05:55.581 [pool-1-thread-1] INFO  u.c.w.d.HttpClientDownloader.download(86) - downloading page success https://www.ijf.org/judoka/76018
+17:05:55.581 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(73) - 解析柔道家详情页[https://www.ijf.org/judoka/76018]
+17:05:55.695 [pool-1-thread-1] INFO  cn.edu.bistu.cs.ir.index.IdxService.addDocument(68) - 成功将ID为[76018]的柔道家信息加入索引
+17:05:55.695 [pool-1-thread-1] INFO  c.e.bistu.cs.ir.index.LucenePipeline.process(42) - 成功将ID为[76018]的柔道家信息写入索引
+17:05:58.517 [pool-1-thread-1] INFO  u.c.w.d.HttpClientDownloader.download(86) - downloading page success https://www.ijf.org/judoka/88002
+17:05:58.517 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(73) - 解析柔道家详情页[https://www.ijf.org/judoka/88002]
+17:05:58.623 [pool-1-thread-1] INFO  cn.edu.bistu.cs.ir.index.IdxService.addDocument(68) - 成功将ID为[88002]的柔道家信息加入索引
+17:05:58.623 [pool-1-thread-1] INFO  c.e.bistu.cs.ir.index.LucenePipeline.process(42) - 成功将ID为[88002]的柔道家信息写入索引
+17:06:01.531 [pool-1-thread-1] INFO  u.c.w.d.HttpClientDownloader.download(86) - downloading page success https://www.ijf.org/judoka/76088
+17:06:01.532 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(73) - 解析柔道家详情页[https://www.ijf.org/judoka/76088]
+17:06:01.629 [pool-1-thread-1] INFO  cn.edu.bistu.cs.ir.index.IdxService.addDocument(68) - 成功将ID为[76088]的柔道家信息加入索引
+17:06:01.629 [pool-1-thread-1] INFO  c.e.bistu.cs.ir.index.LucenePipeline.process(42) - 成功将ID为[76088]的柔道家信息写入索引
+17:06:04.259 [pool-1-thread-1] INFO  u.c.w.d.HttpClientDownloader.download(86) - downloading page success https://www.ijf.org/judoka/44315
+17:06:04.260 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(73) - 解析柔道家详情页[https://www.ijf.org/judoka/44315]
+17:06:04.360 [pool-1-thread-1] INFO  cn.edu.bistu.cs.ir.index.IdxService.addDocument(68) - 成功将ID为[44315]的柔道家信息加入索引
+17:06:04.360 [pool-1-thread-1] INFO  c.e.bistu.cs.ir.index.LucenePipeline.process(42) - 成功将ID为[44315]的柔道家信息写入索引
+17:06:06.976 [pool-1-thread-1] INFO  u.c.w.d.HttpClientDownloader.download(86) - downloading page success https://www.ijf.org/judoka/83109
+17:06:06.976 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(73) - 解析柔道家详情页[https://www.ijf.org/judoka/83109]
+17:06:07.096 [pool-1-thread-1] INFO  cn.edu.bistu.cs.ir.index.IdxService.addDocument(68) - 成功将ID为[83109]的柔道家信息加入索引
+17:06:07.096 [pool-1-thread-1] INFO  c.e.bistu.cs.ir.index.LucenePipeline.process(42) - 成功将ID为[83109]的柔道家信息写入索引
+17:06:10.104 [pool-1-thread-1] INFO  u.c.w.d.HttpClientDownloader.download(86) - downloading page success https://www.ijf.org/judoka/71649
+17:06:10.105 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(73) - 解析柔道家详情页[https://www.ijf.org/judoka/71649]
+17:06:10.189 [pool-1-thread-1] INFO  cn.edu.bistu.cs.ir.index.IdxService.addDocument(68) - 成功将ID为[71649]的柔道家信息加入索引
+17:06:10.189 [pool-1-thread-1] INFO  c.e.bistu.cs.ir.index.LucenePipeline.process(42) - 成功将ID为[71649]的柔道家信息写入索引
+17:06:12.754 [pool-1-thread-1] INFO  u.c.w.d.HttpClientDownloader.download(86) - downloading page success https://www.ijf.org/judoka/20482
+17:06:12.755 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(73) - 解析柔道家详情页[https://www.ijf.org/judoka/20482]
+17:06:12.838 [pool-1-thread-1] INFO  cn.edu.bistu.cs.ir.index.IdxService.addDocument(68) - 成功将ID为[20482]的柔道家信息加入索引
+17:06:12.838 [pool-1-thread-1] INFO  c.e.bistu.cs.ir.index.LucenePipeline.process(42) - 成功将ID为[20482]的柔道家信息写入索引
+17:06:15.636 [pool-1-thread-1] INFO  u.c.w.d.HttpClientDownloader.download(86) - downloading page success https://www.ijf.org/judoka/67862
+17:06:15.637 [pool-1-thread-1] INFO  c.edu.bistu.cs.ir.crawler.IjfCrawler.process(73) - 解析柔道家详情页[https://www.ijf.org/judoka/67862]
+17:06:15.734 [pool-1-thread-1] INFO  cn.edu.bistu.cs.ir.index.IdxService.addDocument(68) - 成功将ID为[67862]的柔道家信息加入索引
+17:06:15.735 [pool-1-thread-1] INFO  c.e.bistu.cs.ir.index.LucenePipeline.process(42) - 成功将ID为[67862]的柔道家信息写入索引
+17:06:16.232 [SpringApplicationShutdownHook] INFO  cn.edu.bistu.cs.ir.index.IdxService.destroy(108) - 索引关闭
