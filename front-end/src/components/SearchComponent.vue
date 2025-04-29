@@ -47,7 +47,7 @@
 
 <script>
 import request from '@/utils/request.js'
-import { ElMessage, ElImage } from 'element-plus'
+
 
 export default {
   name: 'SearchComponentPage',

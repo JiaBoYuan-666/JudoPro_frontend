@@ -1,7 +1,7 @@
 <script setup>
 import { Connection, Search, User } from '@element-plus/icons-vue'
 import { ref } from 'vue'
-import { Menu as IconMenu, Location, Setting } from '@element-plus/icons-vue'
+import { Menu as IconMenu, Location, Setting,Avatar } from '@element-plus/icons-vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useSearchStore, useUserStore } from '@/stores/index.js'
 
@@ -89,58 +89,74 @@ const handleSelect = (key, keyPath) => {
           <el-menu-item index="2-3">
             <a href="https://www.bilibili.com/" target="_blank" rel="noopener noreferrer">b站</a>
           </el-menu-item>
-          <el-sub-menu index="2-4">
-            <template #title>更多的更多</template>
-            <el-menu-item index="2-4-1">链接</el-menu-item>
-            <el-menu-item index="2-4-2">链接</el-menu-item>
-            <el-menu-item index="2-4-3">链接</el-menu-item>
+
           </el-sub-menu>
-        </el-sub-menu>
+
       </el-menu>
     </el-header>
     <el-container>
       <el-aside>
         <h5 class="mb-2"></h5>
         <el-menu
-          router="router"
-          :default-active="route.path"
-          default-active="2"
-          class="el-menu-vertical-demo"
-          @open="handleOpen"
-          @close="handleClose"
-        >
-          <el-sub-menu index="1">
-            <template #title>
-              <el-icon><location /></el-icon>
-              <span>创作中心</span>
-            </template>
-            <el-menu-item-group>
-              <el-menu-item index="/creative/publish">发布</el-menu-item>
-              <el-menu-item index="/creative/draft">草稿</el-menu-item>
-            </el-menu-item-group>
+  router
+  :default-active="route.path"
+  class="el-menu-vertical-demo"
+  @open="handleOpen"
+  @close="handleClose"
+>
+  <!-- 简介 -->
+  <el-menu-item index="/intro">
+    <el-icon><Avatar /></el-icon>
+    <span>简介</span>
+  </el-menu-item>
+  <!-- 创作中心 -->
+  <el-sub-menu index="1">
+    <template #title>
+      <el-icon><location /></el-icon>
+      <span>创作中心</span>
+    </template>
 
-            <el-sub-menu index="1-4">
-              <template #title><span>联系客服</span></template>
-              <el-menu-item>没有客服</el-menu-item>
-            </el-sub-menu>
-          </el-sub-menu>
-          <el-menu-item index="/discovery">
-            <el-icon><icon-menu /></el-icon>
-            <template #title>发现</template>
-          </el-menu-item>
-          <el-menu-item index="/user">
-            <el-icon><User /></el-icon>
-            <template #title>个人中心</template>
-          </el-menu-item>
-          <el-menu-item index="/settings">
-            <el-icon><setting /></el-icon>
-            <template #title>设置</template>
-          </el-menu-item>
-          <el-menu-item index="/login" :disabled="userStore.user">
-            <el-icon><Connection /></el-icon>
-            <template #title>立即登录</template>
-          </el-menu-item>
-        </el-menu>
+    <el-menu-item-group>
+      <el-menu-item index="/creative/publish">发布</el-menu-item>
+      <el-menu-item index="/creative/draft">草稿</el-menu-item>
+    </el-menu-item-group>
+
+    <el-sub-menu index="1-4">
+      <template #title>
+        <span>联系客服</span>
+      </template>
+      <el-menu-item disabled>没有客服</el-menu-item>
+    </el-sub-menu>
+  </el-sub-menu>
+
+  <!-- 发现 -->
+  <el-menu-item index="/discovery">
+    <el-icon><icon-menu /></el-icon>
+    <span>发现</span>
+  </el-menu-item>
+
+  <!-- 个人中心 -->
+  <el-menu-item index="/user">
+    <el-icon><User /></el-icon>
+    <span>个人中心</span>
+  </el-menu-item>
+
+  <!-- 检索 -->
+  <el-menu-item index="/settings">
+    <el-icon><setting /></el-icon>
+    <span>检索</span>
+  </el-menu-item>
+
+  <!-- 登录按钮，仅在未登录时显示 -->
+  <el-menu-item
+    index="/login"
+    :disabled="userStore.user"
+  >
+    <el-icon><Connection /></el-icon>
+    <span>立即登录</span>
+  </el-menu-item>
+</el-menu>
+
         <!-- 老版菜单
          <el-radio-group v-model="isCollapse" style="margin-bottom: 20px">
           <el-radio-button :value="false">展开</el-radio-button>

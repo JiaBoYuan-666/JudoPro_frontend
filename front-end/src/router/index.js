@@ -34,6 +34,11 @@ const router = createRouter({
           path: '/user',
           name: 'user',
           component: () => import('@/views/user/UserPage.vue')
+        },
+        {
+          path: '/intro',
+          name: 'intro',
+          component: () => import('@/views/intro/IntroPage.vue')
         }
       ]
     },
@@ -52,9 +57,9 @@ const router = createRouter({
       name: 'publicize',
       component: () => import('@/views/publicize/PublicizePage.vue')
     },{
-      path: '/news',
-      name: 'news',
-      component: () => import('@/views/news/NewsPage.vue')
+      path: '/video',
+      name: 'video',
+      component: () => import('@/views/video/VideoPage.vue')
     }
   ]
 })

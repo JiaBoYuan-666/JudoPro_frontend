@@ -54,7 +54,7 @@ getPage()
             :span="6"
             v-for="item in data"
             :key="item.id"
-            @click="router.push(`/news`)" 
+            @click="router.push(`/video`)" 
           >
             <el-card
               class="el-card"
