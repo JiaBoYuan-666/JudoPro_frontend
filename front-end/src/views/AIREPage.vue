@@ -1,19 +1,35 @@
 <template>
-  <div class="container">
-    <h2>运动员详细信息</h2>
-    <pre>{{ athleteData }}</pre>
+  <div class="analysis-container">
+    <dpanalysis :athlete-meta="processedData" />
   </div>
 </template>
 
 <script>
+import dpanalysis from '@/components/dpanalysis.vue'
+
 export default {
   name: 'AIREPage',
+  components: { dpanalysis },
   computed: {
-    athleteData() {
+    // 在computed属性中添加完整校验逻辑
+    processedData() {
       try {
-        return JSON.parse(this.$route.params.athleteData)
-      } catch {
-        return {}
+        const rawData = decodeURIComponent(this.$route.params.athleteData || '');
+        const data = JSON.parse(rawData || '{}');
+        
+        // 增强空值处理和类型转换
+        return {
+          name: data.NAME || data.name || '未知运动员',
+          age: data.AGE ? parseInt(data.AGE.match(/\d+/)?.[0] || 0) : data.age || '未知',
+          height: data.HEIGHT ? parseInt(data.HEIGHT) || '未知' : data.height || '未知',
+          weight: data.KG ? parseInt(data.KG) || '未知' : data.weight || '未知',
+          nationality: data.LOCATION || data.nationality || '未指定',
+          image: data.IMAGE || '',
+          isValid: !!(data.NAME || data.name)
+        };
+      } catch (e) {
+        console.error('数据解析失败:', e);
+        return { isValid: false };
       }
     }
   }

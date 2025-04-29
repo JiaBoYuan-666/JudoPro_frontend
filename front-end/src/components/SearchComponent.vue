@@ -92,8 +92,6 @@ export default {
         this.loading = false
       }
     },
-  },
-  methods: {
     handleRowClick(row) {
       this.router.push({
         name: 'AIREPage',
@@ -113,6 +111,12 @@ export default {
 .el-table th,
 .el-table td {
   padding: 8px 12px;
+}
+
+:deep(.el-table__row:hover) {
+  background-color: #f5f7fa;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 /* 确保 el-image 预览浮层在最上层 */
