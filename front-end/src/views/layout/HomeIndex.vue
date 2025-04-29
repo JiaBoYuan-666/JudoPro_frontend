@@ -10,7 +10,7 @@ const route = useRoute()
 const router = useRouter()
 const userStore = useUserStore()
 const modelName = ref('')
-
+const drawer = ref(false)
 const searchStore = useSearchStore()
 const onSearch = () => {
   if (route.path !== '/discovery') router.push('/discovery')
@@ -67,7 +67,21 @@ const handleSelect = (key, keyPath) => {
           <el-button type="success" @click="router.push('/login')">立即登录</el-button>
         </div>
       </div>
-      <el-menu
+
+      <el-button type="primary"@click="drawer = true">
+    AI助手
+  </el-button>
+  <el-drawer v-model="drawer" size="50%":show-close="false">
+    <template #header="{ close, titleId, titleClass }">
+      <h4 :id="titleId" :class="titleClass">小助手</h4>
+      <el-button type="danger" @click="close">
+        <CircleCloseFilled />
+        关闭
+      </el-button>
+    </template>
+    <Deepseek />
+  </el-drawer>
+      <!-- <el-menu
         default-active="1"
         class="el-menu-demo"
         mode="horizontal"
@@ -88,9 +102,9 @@ const handleSelect = (key, keyPath) => {
             <a href="https://www.bilibili.com/" target="_blank" rel="noopener noreferrer">b站</a>
           </el-menu-item>
 
-          </el-sub-menu>
+          </el-sub-menu> -->
 
-      </el-menu>
+      <!-- </el-menu> -->
     </el-header>
     <el-container>
       <el-aside>
