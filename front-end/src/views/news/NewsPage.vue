@@ -16,7 +16,7 @@ const goBack = () => router.back()
     </el-button>
     <el-card class="video-card">
       <h1 class="video-title">{{ videoTitle }}</h1>
-      <!-- 增加 wrapper 用于统一限制尺寸与居中 -->
+
       <div class="player-wrapper">
         <div class="player">
           <video
