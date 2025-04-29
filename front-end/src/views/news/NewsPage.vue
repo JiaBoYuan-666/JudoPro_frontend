@@ -1,35 +1,83 @@
-<script>
+<script lang="ts" setup>
 import { useRouter } from 'vue-router'
-
-export default {
-  setup() {
-    const router = useRouter()
-
-    const goBack = () => {
-      router.back()
-    }
-
-    return {
-      goBack
-    }
-  }
-}
-
+const router = useRouter()
+const videoSrc = '/src/assets/video.mp4'
+const coverSrc = '/src/assets/学校logo.jpeg'
+const videoTitle = '视频标题'
+const videoDescription = '视频简介：这是一段演示视频。'
+const goBack = () => router.back()
 </script>
 
+
 <template>
-<el-button type="primary"  @click=goBack  >
-    返回上一页
-</el-button>
-新闻页    
-<div>
-    <h1>新闻题目</h1>
-</div>
-<div>
-    <p>新闻内容</p>
-</div>
+  <div class="video-container">
+    <el-button type="primary" @click="goBack" class="back-button">
+      返回上一页
+    </el-button>
+    <el-card class="video-card">
+      <h1 class="video-title">{{ videoTitle }}</h1>
+      <!-- 增加 wrapper 用于统一限制尺寸与居中 -->
+      <div class="player-wrapper">
+        <div class="player">
+          <video
+            controls
+            :src="videoSrc"
+            :poster="coverSrc"
+          >
+            您的浏览器不支持播放该视频。
+          </video>
+        </div>
+      </div>
+      <p class="video-description">{{ videoDescription }}</p>
+    </el-card>
+  </div>
 </template>
 
-<style>
+<style scoped>
+.back-button {
+  align-self: flex-start;
+  margin: 16px;
+}
 
+.video-card {
+  padding: 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  /* 限制卡片最大宽度并居中 */
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.video-title {
+  font-size: 1.5rem;
+  margin: 16px;
+}
+
+.player-wrapper {
+  /* 限制播放器总体最大宽度并水平居中 */
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.player {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 宽高比 */
+}
+
+.player video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;       /* 响应式宽度 */
+  height: auto;      /* 等比缩放 */
+  max-height: 450px; /* 限制最大高度 */
+  max-width: 100%;   /* 不超出父容器 */
+}
+
+.video-description {
+  font-size: 1rem;
+  color: #666;
+  margin: 32px 16px 16px;
+}
 </style>
