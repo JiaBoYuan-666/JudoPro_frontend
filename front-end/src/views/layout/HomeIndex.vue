@@ -32,21 +32,19 @@ const handleSelect = (key, keyPath) => {
 <template>
   <el-container>
     <el-header>
-      <div class="logo">
-        <img
-          @click="router.push('/')"
-          src="@/assets/学校logo4.png"
-          alt="logo"
-          style="
-            cursor: pointer;
-            height: 8vh;
-            width: auto;
-            position: relative;
-            bottom: 0;
-            left: 50px;
-          "
-        />
-      </div>
+      <div class="logo" style="display: flex; align-items: center; gap: 10px; margin-left: 20px">
+  <img
+    @click="router.push('/')"
+    src="@/assets/学校logo4.png"
+    alt="logo"
+    style="
+      cursor: pointer;
+      height: 8vh;
+      width: auto;
+    "
+  />
+  <span style="font-size: 24px; font-weight: bold; color: #333">Judopro智训平台</span>
+</div>
       <div class="search-box" style="position: relative; left: 100px">
         <el-input
           v-model="modelName"
