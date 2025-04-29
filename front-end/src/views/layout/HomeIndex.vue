@@ -45,7 +45,7 @@ const handleSelect = (key, keyPath) => {
   />
   <span style="font-size: 24px; font-weight: bold; color: #333">Judopro智训平台</span>
 </div>
-      <div class="search-box" style="position: relative; left: 100px">
+      <!-- <div class="search-box" style="position: relative; left: 100px">
         <el-input
           v-model="modelName"
           style="width: 450px; height: 55px"
@@ -56,7 +56,7 @@ const handleSelect = (key, keyPath) => {
             <el-button @click="onSearch" :icon="Search" />
           </template>
         </el-input>
-      </div>
+      </div> -->
       <div class="user-box" style="margin-left: 10px">
         <div v-if="userStore.user">
           {{ userStore.user.name }}，您好
@@ -68,9 +68,23 @@ const handleSelect = (key, keyPath) => {
         </div>
       </div>
 
-      <el-button type="primary"@click="drawer = true">
-    AI助手
-  </el-button>
+      <el-button 
+        type="primary" 
+        @click="drawer = true"
+        style="
+          font-size: 18px;
+          font-weight: bold;
+          padding: 15px 25px;
+          background: linear-gradient(45deg, #409eff, #36b3ff);
+          border: none;
+          box-shadow: 0 4px 12px rgba(64, 158, 255, 0.5);
+          transition: all 0.3s ease;
+          margin-left: 20px;
+        "
+        class="ai-assistant-btn"
+      >
+        AI助手
+      </el-button>
   <el-drawer v-model="drawer" size="50%":show-close="false">
     <template #header="{ close, titleId, titleClass }">
       <h4 :id="titleId" :class="titleClass">小助手</h4>
@@ -113,8 +127,7 @@ const handleSelect = (key, keyPath) => {
   router
   :default-active="route.path"
   class="el-menu-vertical-demo"
-  @open="handleOpen"
-  @close="handleClose"
+    @close="handleClose"
 >
   <!-- 简介 -->
   <el-menu-item index="/intro">
@@ -130,33 +143,33 @@ const handleSelect = (key, keyPath) => {
 
     <el-menu-item-group>
       <el-menu-item index="/creative/publish">发布</el-menu-item>
-      <el-menu-item index="/creative/draft">草稿</el-menu-item>
+      <!-- <el-menu-item index="/creative/draft">草稿</el-menu-item> -->
     </el-menu-item-group>
 
-    <el-sub-menu index="1-4">
+    <!-- <el-sub-menu index="1-4">
       <template #title>
         <span>联系客服</span>
       </template>
       <el-menu-item disabled>没有客服</el-menu-item>
-    </el-sub-menu>
+    </el-sub-menu> -->
   </el-sub-menu>
 
   <!-- 发现 -->
   <el-menu-item index="/discovery">
     <el-icon><icon-menu /></el-icon>
-    <span>发现</span>
+    <span>摔跤视频解析</span>
   </el-menu-item>
 
   <!-- 个人中心 -->
-  <el-menu-item index="/user">
+  <!-- <el-menu-item index="/user">
     <el-icon><User /></el-icon>
     <span>个人中心</span>
-  </el-menu-item>
+  </el-menu-item> -->
 
   <!-- 检索 -->
   <el-menu-item index="/settings">
     <el-icon><setting /></el-icon>
-    <span>检索</span>
+    <span>检索运动员</span>
   </el-menu-item>
 
   <!-- 登录按钮，仅在未登录时显示 -->
@@ -290,6 +303,11 @@ const handleSelect = (key, keyPath) => {
     border-radius: 10px; /* 鼠标悬浮时边框变为圆角 */
     cursor: pointer; /* 改变鼠标指针为手型 */
   }
+}
+
+.ai-assistant-btn:hover {
+  background: linear-gradient(45deg, #36b3ff, #409eff);
+  transform: scale(1.05);
 }
 .content2 {
   display: flex;

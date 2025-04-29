@@ -1,13 +1,21 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { useUserStore } from '@/stores/index.js'
 
+import AIREPage from '@/views/AIREPage.vue'
+
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: '/aire/:athleteData',
+      name: 'AIREPage',
+      component: AIREPage,
+      props: true
+    },
+    {
       path: '/',
       name: 'home',
-      redirect: '/discovery',
+      redirect: '/intro',
       component: () => import('@/views/layout/HomeIndex.vue'),
       children: [
         {

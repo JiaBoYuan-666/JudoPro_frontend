@@ -15,6 +15,7 @@
       :data="results"
       style="width: 100%; margin-top: 20px; table-layout: fixed;"
       v-if="results.length"
+      @row-click="handleRowClick"
     >
       <el-table-column prop="ID" label="ID" :min-width="60" />
       <el-table-column prop="NAME" label="名称" :min-width="120" />
@@ -49,9 +50,15 @@
 import request from '@/utils/request.js'
 
 
+import { useRouter } from 'vue-router'
+
 export default {
   name: 'SearchComponentPage',
   components: { ElImage },
+  setup() {
+    const router = useRouter()
+    return { router }
+  },
   data() {
     return {
       kw: '',
@@ -86,6 +93,14 @@ export default {
       }
     },
   },
+  methods: {
+    handleRowClick(row) {
+      this.router.push({
+        name: 'AIREPage',
+        params: { athleteData: JSON.stringify(row) }
+      })
+    }
+  }
 }
 </script>
 

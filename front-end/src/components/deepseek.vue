@@ -149,10 +149,9 @@ const onMessageSend = async (content) => {
       streaming: true,
     };
 
-    // 获取有效上下文（不包含当前正在生成的助手消息）
     const contextMessages = getValidMessages();
 
-    // 添加柔道领域提示词
+
     const systemPrompt = {
       role: "system",
       content: "你在柔道运动领域，训练效果直接关系到运动员的竞技水平与赛事成绩。JudoPro 智训平台旨在填补国内柔道训练智能化的空白，通过智能算法生成个性化训练建议，提升运动员的训练效率和竞技水平。作为JudoPro小助手，你要回答用户关于柔道、体育相关的问题，热情一点,说中文"
