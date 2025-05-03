@@ -36,8 +36,8 @@
 
     <!-- 未来展望 -->
     <section class="section">
-      <h2 class="section-title animate__title">未来展望</h2>
-      <p class="section-content animate__content">
+      <h2 class="section-title">未来展望</h2>
+      <p class="section-content">
         JudoPro 智训平台的研发还可为其他体育项目提供范例，为整个体育训练数字化转型提供有力支撑。
       </p>
     </section>
@@ -96,29 +96,28 @@ export default {
 <style scoped>
 
 .app-main {
- 
   padding: 40px;
+  overflow: auto;
   background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
   color: #1f1f1f;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-  min-height: calc(100vh - 60px); 
-  height: auto;
-  overflow-y: auto;  
-  padding-bottom: 80px;   
+  height: 100%;
+  padding-bottom: 40px;
 }
 
-/* 防止外层容器出现滚动条 */
+/* 外层容器滚动条设置 */
 :deep(.el-container) {
-  overflow: hidden;
   height: 100vh;
+  overflow: auto;
 }
 
 .section {
-  margin-bottom: 80px;
+  margin-bottom: 40px;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 20px;
 }
 
 .section-title {
@@ -178,6 +177,7 @@ export default {
   transform: translateY(30px) scale(0.95);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform, opacity;
+  margin-bottom: 20px;
 }
 
 .animate__feature.animate__active {

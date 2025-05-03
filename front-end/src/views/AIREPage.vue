@@ -11,13 +11,12 @@ export default {
   name: 'AIREPage',
   components: { dpanalysis },
   computed: {
-    // 在computed属性中添加完整校验逻辑
     processedData() {
       try {
         const rawData = decodeURIComponent(this.$route.params.athleteData || '');
         const data = JSON.parse(rawData || '{}');
         
-        // 增强空值处理和类型转换
+
         return {
           name: data.NAME || data.name || '未知运动员',
           age: data.AGE ? parseInt(data.AGE.match(/\d+/)?.[0] || 0) : data.age || '未知',

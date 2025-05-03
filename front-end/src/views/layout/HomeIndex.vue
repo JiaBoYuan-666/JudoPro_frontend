@@ -239,6 +239,7 @@ const handleSelect = (key, keyPath) => {
 <style scoped lang="scss">
 .el-container {
   height: 100%;
+  overflow: hidden;
 }
 .el-row {
   height: 100%;
