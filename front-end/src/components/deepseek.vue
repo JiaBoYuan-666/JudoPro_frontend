@@ -27,7 +27,9 @@
         {{ 
   modelVersion === 'deepseek-chat' ? 'V3 模型' : 
   modelVersion === 'deepseek-reasoner' ? 'R1 模型' : 
-  'GPT-4.1'
+  'V3 模型'
+  // 注释掉GPT-4.1选项
+  /* 'GPT-4.1' */
 }}
       </Button>
   
@@ -77,11 +79,13 @@ const toggleModel = () => {
   
   if (modelVersion.value === 'deepseek-chat') {
     modelVersion.value = 'deepseek-reasoner';
-  } else if (modelVersion.value === 'deepseek-reasoner') {
-    modelVersion.value = 'openai/gpt-4.1';
   } else {
     modelVersion.value = 'deepseek-chat';
   }
+  // 注释掉GPT-4.1相关逻辑
+  /* else if (modelVersion.value === 'deepseek-reasoner') {
+    modelVersion.value = 'openai/gpt-4.1';
+  } */
   isSending.value = false;
 };
 
