@@ -1,9 +1,19 @@
 import OpenAI from "openai";
 
-const openai = new OpenAI({
+const deepseekOpenAI = new OpenAI({
   baseURL: 'https://api.deepseek.com',
   apiKey: 'sk-bb7152657f8c4994b8dec6dff88d6460',
   dangerouslyAllowBrowser: true
+});
+
+const openrouterOpenAI = new OpenAI({
+  baseURL: 'https://openrouter.ai/api/v1',
+  apiKey: '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',
+  dangerouslyAllowBrowser: true,
+  defaultHeaders: {
+    "HTTP-Referer": "https://judopro.com",
+    "X-Title": "JudoPro"
+  }
 });
 
 const formatMessages = (messages, isReasoner) => {
@@ -47,6 +57,7 @@ export const getLargeModelAPI = async (
   temperature = 1.0
 ) => {
   try {
+    const isOpenRouter = model.startsWith('openai/');
     const isReasoner = model === 'deepseek-reasoner';
     
     // 构造符合要求的消息数组
@@ -70,9 +81,10 @@ export const getLargeModelAPI = async (
       temperature
     });
 
-    const stream = await openai.chat.completions.create({
+    const client = isOpenRouter ? openrouterOpenAI : deepseekOpenAI;
+    const stream = await client.chat.completions.create({
       messages: formattedMessages,
-      model,
+      model: isOpenRouter ? model : model,
       max_tokens: 1200,
       temperature,
       frequency_penalty: 0.5,

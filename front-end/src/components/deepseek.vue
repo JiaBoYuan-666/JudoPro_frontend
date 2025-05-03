@@ -24,7 +24,11 @@
         theme="solid"
         :disabled="isSending"
       >
-        {{ modelVersion === 'deepseek-chat' ? 'V3 模型' : 'R1 模型' }}
+        {{ 
+  modelVersion === 'deepseek-chat' ? 'V3 模型' : 
+  modelVersion === 'deepseek-reasoner' ? 'R1 模型' : 
+  'GPT-4.1'
+}}
       </Button>
   
     </div>
@@ -69,9 +73,14 @@ const toggleModel = () => {
     });
     return;
   }
-  modelVersion.value = modelVersion.value === 'deepseek-chat' 
-    ? 'deepseek-reasoner' 
-    : 'deepseek-chat';
+  
+  if (modelVersion.value === 'deepseek-chat') {
+    modelVersion.value = 'deepseek-reasoner';
+  } else if (modelVersion.value === 'deepseek-reasoner') {
+    modelVersion.value = 'openai/gpt-4.1';
+  } else {
+    modelVersion.value = 'deepseek-chat';
+  }
 };
 
 
