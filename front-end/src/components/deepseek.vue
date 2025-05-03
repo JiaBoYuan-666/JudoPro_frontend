@@ -43,6 +43,7 @@
       @chats-change="onChatsChange"
       @message-send="onMessageSend"
       @message-reset="onMessageReset"
+      :disabled="isSending || loadingStatus"
       class="chat"
     />
     

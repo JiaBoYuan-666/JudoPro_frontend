@@ -20,9 +20,9 @@ const mockData = [
   {
     id: 1,
     // name: 'video1',
-    userName: 'Test User',
-    views: 100,
-    likes: 50,
+    userName: 'safdadssdafasdfasfsfdsafasdfsfsfasddasfdsafsaasdf',
+    views: 100333333333,
+    likes: 5033333333333,
     image: '/src/assets/video1.png'
   },
   {
@@ -142,23 +142,25 @@ getPage()
               class="el-card"
               style="height: 450px; max-width: 480px; cursor: pointer"
               shadow="hover"
+              :body-style="{ padding: '20px' }"
             >
-              <div class="title-container">
+              <div class="title-container" style="height: 350px; margin-bottom: 15px">
                 <el-image
                   :src="item.image"
-                  style="height: 100%; width: 100%; object-fit: cover; transition: transform 0.3s ease;"
+                  style="height: 100%; width: 100%; object-fit: cover; transition: transform 0.3s ease; border-radius: 8px;"
                   :hover="{ transform: 'scale(1.05)' }"
                 />
-                <h2 style="font-size: 24px; font-weight: bold; text-align: center; margin-top: 10px">{{ item.name }}</h2>
               </div>
-              <template #footer>
-                <div>{{ item.name }}</div>
-                <div class="content2">
-                  <div>作者：{{ item.userName }}</div>
-                  <div>浏览：{{ item.views }}</div>
-                  <div>点赞: {{ item.likes }}</div>
+              <div style="margin-bottom: 15px">
+                <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 10px; color: #333">{{ item.name }}</h3>
+                <div class="content2" style="font-size: 14px; color: #666; width: 100%; overflow: hidden; display: flex; flex-direction: column">
+                  <div style="margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-shrink: 0" :title="item.userName">运动员：{{ item.userName }}</div>
+                  <div style="display: flex; justify-content: space-between; gap: 20px; flex-shrink: 0">
+                    <span>浏览：{{ item.views }}  </span>
+                    <span>点赞: {{ item.likes }}</span>
+                  </div>
                 </div>
-              </template>
+              </div>
             </el-card>
           </el-col>
         </el-row>
@@ -197,7 +199,9 @@ getPage()
 }
 
 .el-row {
-  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
 }
 
 .el-header {
@@ -209,11 +213,9 @@ getPage()
   justify-content: space-between;
 }
 
-
 .el-menu--horizontal > .el-menu-item:nth-child(1) {
   margin-right: auto;
 }
-
 
 .mb-4 {
   display: flex;
@@ -222,53 +224,56 @@ getPage()
   margin-top: 30px;
 }
 
-
 .el-aside {
   background-color: #f7f7f7;
 }
 
-
 .el-main {
   background-color: #f7f7f7;
+  padding: 20px;
 }
-
 
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   min-height: 400px;
 }
 
-
-.el-row {
-  margin-bottom: 20px;
-}
-
-
-.el-row:last-child {
-  margin-bottom: 0;
-}
-
-
 .el-col {
+  padding: 0 10px;
+  margin-bottom: 20px;
   border-radius: 4px;
 }
-
 
 .grid-content {
   border-radius: 4px;
   min-height: 36px;
 }
 
-
 .content2 {
   display: flex;
   justify-content: space-between;
   color: #7f7f7f;
   font-size: 13px;
+  width: 100%;
+  overflow: hidden;
 }
 
-
 .el-pagination {
-  margin-top: 5px;
+  margin: 20px 0;
+  padding: 20px 0;
+  background: #fff;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .el-col {
+    width: 100%;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .el-col {
+    width: 50%;
+  }
 }
 </style>
