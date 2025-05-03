@@ -84,18 +84,18 @@ const mockData = [
   {
     id: 9,
     // name: 'video3',
-    userName: 'Test User',
+    userName: '测试',
     views: 100,
     likes: 50,
-    image: '/src/assets/video1.png'
+    image: '/src/assets/video长.png'
   },
   {
     id: 10,
     // name: 'video4',
-    userName: 'Test User',
+    userName: '测试',
     views: 200,
     likes: 100,
-    image: '/src/assets/video2.png'
+    image: '/src/assets/video高.png'
   },
   {
     id:11,
@@ -144,10 +144,10 @@ getPage()
               shadow="hover"
               :body-style="{ padding: '20px' }"
             >
-              <div class="title-container" style="height: 350px; margin-bottom: 15px">
+              <div class="title-container" style="height: 350px; margin-bottom: 15px; display: flex; justify-content: center; align-items: center; background: #f5f5f5; border-radius: 8px; overflow: hidden;">
                 <el-image
                   :src="item.image"
-                  style="height: 100%; width: 100%; object-fit: cover; transition: transform 0.3s ease; border-radius: 8px;"
+                  style="max-height: 100%; max-width: 100%; width: auto; height: auto; object-fit: contain; transition: transform 0.3s ease;"
                   :hover="{ transform: 'scale(1.05)' }"
                 />
               </div>
