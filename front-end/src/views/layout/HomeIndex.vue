@@ -43,7 +43,7 @@ const handleSelect = (key, keyPath) => {
       width: auto;
     "
   />
-  <span style="font-size: 24px; font-weight: bold; color: #333">Judopro智训平台</span>
+  <span @click="router.push('/')" style="font-size: 24px; font-weight: bold; color: #333">Judopro智训平台</span>
 </div>
       <!-- <div class="search-box" style="position: relative; left: 100px">
         <el-input

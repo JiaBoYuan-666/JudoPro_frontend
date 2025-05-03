@@ -1,10 +1,91 @@
 <script lang="ts" setup>
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 const router = useRouter()
-const videoSrc = '/src/assets/video.mp4'
-const coverSrc = '/src/assets/学校logo.jpeg'
-const videoTitle = '视频标题'
-const videoDescription = '视频简介：这是一段演示视频。'
+const route = useRoute()
+const mockData = [
+  { 
+    id: 1, 
+    videoSrc: '/src/assets/video.mp4', 
+    coverSrc: '/src/assets/学校logo.jpeg', 
+    videoTitle: '视频标题', 
+    videoDescription: '视频简介：这是一段演示视频。'
+  },{ 
+    id: 2, 
+    videoSrc: '/src/assets/video.mp4', 
+    coverSrc: '/src/assets/学校logo.jpeg', 
+    videoTitle: '我是第二个视频', 
+    videoDescription: '第二个视频'
+  },{ 
+    id: 3, 
+    videoSrc: '/src/assets/video.mp4', 
+    coverSrc: '/src/assets/学校logo.jpeg', 
+    videoTitle: '我是第3个视频', 
+    videoDescription: '第3个视频'
+  },{ 
+    id: 4, 
+    videoSrc: '/src/assets/video.mp4', 
+    coverSrc: '/src/assets/学校logo.jpeg', 
+    videoTitle: '我是第4个视频', 
+    videoDescription: '第4个视频'
+  },{ 
+    id: 5, 
+    videoSrc: '/src/assets/video.mp4', 
+    coverSrc: '/src/assets/学校logo.jpeg', 
+    videoTitle: '我是第5个视频', 
+    videoDescription: '第5个视频'
+  },{ 
+    id: 6, 
+    videoSrc: '/src/assets/video.mp4', 
+    coverSrc: '/src/assets/学校logo.jpeg', 
+    videoTitle: '我是第6个视频', 
+    videoDescription: '第6个视频'
+  },{ 
+    id: 7, 
+    videoSrc: '/src/assets/video.mp4', 
+    coverSrc: '/src/assets/学校logo.jpeg', 
+    videoTitle: '7', 
+    videoDescription: '视频简介：7'
+  },{ 
+    id: 8, 
+    videoSrc: '/src/assets/video.mp4', 
+    coverSrc: '/src/assets/学校logo.jpeg', 
+    videoTitle: '我是第8个视频', 
+    videoDescription: '第8个视频'
+  },{ 
+    id: 9, 
+    videoSrc: '/src/assets/video.mp4', 
+    coverSrc: '/src/assets/学校logo.jpeg', 
+    videoTitle: '我是第9个视频', 
+    videoDescription: '第9个视频'
+  },{ 
+    id: 10, 
+    videoSrc: '/src/assets/video.mp4', 
+    coverSrc: '/src/assets/学校logo.jpeg', 
+    videoTitle: '我是第10个视频', 
+    videoDescription: '第10个视频'
+  },{ 
+    id: 11, 
+    videoSrc: '/src/assets/video.mp4', 
+    coverSrc: '/src/assets/学校logo.jpeg', 
+    videoTitle: '我是第11个视频', 
+    videoDescription: '第11个视频'
+  },{ 
+    id: 12, 
+    videoSrc: '/src/assets/video.mp4', 
+    coverSrc: '/src/assets/学校logo.jpeg', 
+    videoTitle: '我是第12个视频', 
+    videoDescription: '第12个视频'
+  },
+
+
+
+]
+const id = parseInt(route.params.id as string) || 0
+const currentVideo = mockData.find(video => video.id === id)
+const videoSrc = currentVideo?.videoSrc
+const coverSrc = currentVideo?.coverSrc
+const videoTitle = currentVideo?.videoTitle
+const videoDescription = currentVideo?.videoDescription
 const goBack = () => router.back()
 </script>
 

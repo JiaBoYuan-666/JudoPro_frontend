@@ -65,7 +65,7 @@ const router = createRouter({
       name: 'publicize',
       component: () => import('@/views/publicize/PublicizePage.vue')
     },{
-      path: '/video',
+      path: '/video/:id',
       name: 'video',
       component: () => import('@/views/video/VideoPage.vue')
     }
