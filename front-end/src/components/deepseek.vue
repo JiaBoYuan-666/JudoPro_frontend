@@ -74,13 +74,9 @@ const toggleModel = () => {
     return;
   }
   
-  if (modelVersion.value === 'deepseek-chat') {
-    modelVersion.value = 'deepseek-reasoner';
-  } else if (modelVersion.value === 'deepseek-reasoner') {
-    modelVersion.value = 'openai/gpt-4.1';
-  } else {
-    modelVersion.value = 'deepseek-chat';
-  }
+  const models = ['deepseek-chat', 'deepseek-reasoner', 'openai/gpt-4.1'];
+  const currentIndex = models.indexOf(modelVersion.value);
+  modelVersion.value = models[(currentIndex + 1) % models.length];
 };
 
 

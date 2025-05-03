@@ -8,7 +8,7 @@ const deepseekOpenAI = new OpenAI({
 
 const openrouterOpenAI = new OpenAI({
   baseURL: 'https://openrouter.ai/api/v1',
-  apiKey: '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',
+  apiKey: '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',
   dangerouslyAllowBrowser: true,
   defaultHeaders: {
     "HTTP-Referer": "https://judopro.com",
