@@ -12,7 +12,7 @@
   :max="1.5"
   :step="0.1"
 
-  :disabled="isSending" 
+  :disabled="isSending || modelVersion === 'openai/gpt-4.1'" 
   class="slider"
 />
       </div>
@@ -74,9 +74,14 @@ const toggleModel = () => {
     return;
   }
   
-  const models = ['deepseek-chat', 'deepseek-reasoner', 'openai/gpt-4.1'];
-  const currentIndex = models.indexOf(modelVersion.value);
-  modelVersion.value = models[(currentIndex + 1) % models.length];
+  if (modelVersion.value === 'deepseek-chat') {
+    modelVersion.value = 'deepseek-reasoner';
+  } else if (modelVersion.value === 'deepseek-reasoner') {
+    modelVersion.value = 'openai/gpt-4.1';
+  } else {
+    modelVersion.value = 'deepseek-chat';
+  }
+  isSending.value = false;
 };
 
 
