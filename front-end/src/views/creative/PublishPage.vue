@@ -4,24 +4,23 @@ import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/index.js'
 // import { userLoginStatusService } from '@/api/user.js'
 // import { uploadSegyService } from '@/api/segy.js'
-import { ElButton } from 'element-plus'
-import { CircleCloseFilled } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus' // 用于提示用户
+
+
 
 const coordinateInput = ref('') // 绑定输入框的值
 
-// 处理输入框点击事件
-const handleInputClick = async () => {
-  try {
-    // 读取剪切板内容
-    const text = await navigator.clipboard.readText()
-    coordinateInput.value = text // 将剪切板内容填充到输入框
-  } catch (err) {
-    console.error('粘贴失败: ', err)
-    ElMessage.error('粘贴失败，请确保剪切板中有内容且已授予权限')
-  }
-}
-const visible = ref(false)
+// // 处理输入框点击事件
+// const handleInputClick = async () => {
+//   try {
+//     // 读取剪切板内容
+//     const text = await navigator.clipboard.readText()
+//     coordinateInput.value = text // 将剪切板内容填充到输入框
+//   } catch (err) {
+//     console.error('粘贴失败: ', err)
+//     ElMessage.error('粘贴失败，请确保剪切板中有内容且已授予权限')
+//   }
+// }
+// const visible = ref(false)
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -29,19 +28,37 @@ const userStore = useUserStore()
 const formRef = ref()
 const isPreview = ref(false) // 控制是否处于预览状态
 const previewData = ref({
-  name: '',
-  detail: '',
-  modelUrl: '',
+  id: 1,
+  userName: '',
   views: 0,
   likes: 0,
-  imageUrl: '',
-  backUp: {}
+  image: ''
 })
 
 // 切换预览状态
-const onPreview = () => {
-  isPreview.value = !isPreview.value
+const onPreview = async () => {
+  // 先验证表单再预览
+  const valid = await formRef.value.validate()
+  if (!valid) return
+
+  // 如果已经处于预览状态，则关闭预览
+  if (isPreview.value) {
+    isPreview.value = false
+    return
+  }
+
+  isPreview.value = true
+  previewData.value = {
+    id: 1,
+    userName: form.value.name || '匿名运动员',
+    views: 0,
+    likes: 0,
+    image: form.value.file 
+      ? URL.createObjectURL(form.value.file) 
+      : require('@/assets/placeholder.png')
+  }
 }
+
 const loading = ref(false)
 
 // // 用户登录状态验证
@@ -66,32 +83,43 @@ const loading = ref(false)
 const form = ref({
   name: '',
   detail: '',
-  file: {}
+  tittle: '',
+  file:{},
+  videofile: {}
 })
 
 // 表单校验规则
 const rules = {
   name: [
-    { required: true, message: '工程名称不能为空', trigger: 'change' },
+    { required: true, message: '运动员名称不能为空', trigger: 'change' },
     {
       min: 1,
       max: 19,
-      message: '工程名称长度需要为 1-19 个字符',
+      message: '运动员名称长度需要为 1-19 个字符',
+      trigger: 'blur'
+    }
+  ],
+  tittle: [
+    { required: true, message: '视频标题不能为空', trigger: 'change' },
+    {
+      min: 1,
+      max: 19,
+      message: '视频标题长度需要为 1-19 个字符',
       trigger: 'blur'
     }
   ],
   detail: [
-    { required: true, message: '工程描述不能为空', trigger: 'change' },
+    { required: true, message: '视频简介不能为空', trigger: 'change' },
     {
       min: 1,
       max: 2900,
-      message: '工程描述长度需要为 1-2900 个字符',
+      message: '视频简介长度需要为 1-2900 个字符',
       trigger: 'blur'
     }
   ]
 }
 
-// 上传 SEG-Y 文件
+// 上传封面文件
 const onUpload = async () => {
   await formRef.value.validate()
 
@@ -101,9 +129,9 @@ const onUpload = async () => {
 
   formData.append('name', form.value.name)
   formData.append('detail', form.value.detail)
-  
+  formData.append('tittle', form.value.tittle)
   formData.append('file', form.value.file)
-
+  formData.append('videofile', form.value.videofile)
   // 输出 FormData 内容进行调试
   for (let [key, value] of formData.entries()) {
     console.log(key, value)
@@ -127,26 +155,44 @@ const onUpload = async () => {
 }
 
 // 处理拖拽上传
-const handleFileChange = (file, fileList) => {
-  if (fileList.length > 1) {
-    fileList.splice(0, 1)
+// 处理图片上传
+const handleImageChange = (file, fileList) => {
+  const allowed = ['jpg','jpeg','png'];
+  const ext = file.name.split('.').pop().toLowerCase();
+
+  if (!allowed.includes(ext)) {
+    ElMessage.error('仅支持 JPG/JPEG/PNG 格式图片');
+    ElMessage.error('仅支持 JPG/JPEG/PNG 格式图片');    ElMessage.error('仅支持 JPG/JPEG/PNG 格式图片');    ElMessage.error('仅支持 JPG/JPEG/PNG 格式图片');
+    // 清除所有 ready 状态的文件
+    imageUpload.value.clearFiles(['ready']);
+    form.value.file = null;
+    return;
   }
 
-  // const fileExtension = file.name.split('.').pop().toLowerCase() // 获取文件后缀名
-  // if (!'.segy'.includes(fileExtension)) {
-  //   // 不符合要求，清空文件列表
-  //   fileList.splice(0) // 清空上传组件的文件列表
-  //   ElMessage.error('仅支持上传 SEG-Y 文件')
+  form.value.file = fileList.length ? file.raw : null;
+};
 
-  //   return
-  // }
+// 处理视频上传
+const handleVideoChange = (file, fileList) => {
+  const allowedExtensions = ['mp4', 'mov', 'avi'];
+  const fileExtension = file.name.split('.').pop().toLowerCase();
+  
+  if (!allowedExtensions.includes(fileExtension)) {
+    ElMessage.error('仅支持 MP4/MOV/AVI 格式视频');
+    ElMessage.error('仅支持 MP4/MOV/AVI 格式视频');
+    ElMessage.error('仅支持 MP4/MOV/AVI 格式视频');
+    videoUpload.value.clearFiles(['ready']);
+    form.value.videofile = null;
+    return false;
+  }
 
   if (fileList.length > 0) {
-    form.value.file = file.raw // 存储唯一文件对象
+    form.value.videofile = file.raw;
   } else {
-    form.value.file = null // 如果没有文件，清空变量
+    form.value.videofile = null;
   }
-}
+  return true;
+};
 
 // 接收子组件传递的位置信息
 
@@ -163,13 +209,18 @@ const handleFileChange = (file, fileList) => {
       style="width: 600px"
     >
       <el-form-item prop="name">
-        <label>工程名称：</label>
-        <el-input v-model="form.name" type="text" placeholder="请输入工程名称"></el-input>
+        <label>运动员名称：</label>
+        <el-input v-model="form.name" type="text" placeholder="请输入运动员名称"></el-input>
+      </el-form-item>
+      <el-form-item prop="tittle">
+        <label>视频标题：</label>
+        <el-input v-model="form.tittle" type="textarea" placeholder="请输入视频标题"></el-input>
       </el-form-item>
       <el-form-item prop="detail">
-        <label>工程描述：</label>
-        <el-input v-model="form.detail" type="textarea" placeholder="请输入工程描述"></el-input>
+        <label>视频简介：</label>
+        <el-input v-model="form.detail" type="textarea" placeholder="请输入视频简介"></el-input>
       </el-form-item>
+      
       <!-- <el-form-item prop="position">
         <label>坐标：</label>
         <el-input
@@ -181,28 +232,52 @@ const handleFileChange = (file, fileList) => {
       </el-form-item> -->
       
       <el-form-item>
-        <div>SEG-Y 文件：</div>
+        <div>封面图片文件：</div>
       </el-form-item>
-      <el-form-item>
+      <el-form-item prop="file">
         <div>
           <el-upload
+          
+            ref="imageUpload"
             class="upload"
             drag
             :auto-upload="false"
-            :on-change="handleFileChange"
+            :on-change="handleImageChange"
             style="width: 600px"
             :limit="2"
           >
             <el-icon class="el-icon--upload"><upload-filled /></el-icon>
             <div class="el-upload__text">Drop file here or <em>click to upload</em></div>
             <template #tip>
-              <div class="el-upload__tip">SEG-Y file with a size less than 100MB</div>
+              <div class="el-upload__tip"> file with a size less than 10MB</div>
+            </template>
+          </el-upload>
+        </div>
+      </el-form-item>
+      <el-form-item>
+        <div>视频文件：</div>
+      </el-form-item>
+      <el-form-item prop="videofile">
+        <div>
+          <el-upload
+            ref="videoUpload"
+            class="upload"
+            drag
+            :auto-upload="false"
+            :on-change="handleVideoChange"
+            style="width: 600px"
+            :limit="2"
+          >
+            <el-icon class="el-icon--upload"><upload-filled /></el-icon>
+            <div class="el-upload__text">Drop file here or <em>click to upload</em></div>
+            <template #tip>
+              <div class="el-upload__tip"> file with a size less than 1000MB</div>
             </template>
           </el-upload>
         </div>
       </el-form-item>
       <el-button @click="onUpload" type="success" style="background-color: #0d4799">
-        解析并保存
+        上传
       </el-button>
       
 
@@ -211,28 +286,33 @@ const handleFileChange = (file, fileList) => {
       </el-button>
     </el-form>
   </div>
-  <div v-if="isPreview" class="el-card-preview">
-    <div>首页预览效果（单击卡片预览模型效果）：</div>
-    <el-card
-      style="margin-left: 2vw; height: 450px; max-width: 20vw; cursor: pointer"
-      shadow="hover"
-    >
-      <div class="img-container">
-        <img
-          :src="previewData.imageUrl"
-          style="max-width: 100%; height: auto; position: relative; top: 5px; font-size: 18px"
-        />
-      </div>
-      <template #footer>
-        <div>{{ form.name }}</div>
-
-        <div class="content2">
-          <div>作者：{{ userStore.user.name }}</div>
-          <div>浏览: 0</div>
-          <div>点赞: 0</div>
-        </div>
-      </template>
-    </el-card>
+  <div v-if="isPreview" class="preview-container">
+    <div class="preview-grid">
+      <el-card
+              class="el-card"
+              style="height: 450px; max-width: 480px; cursor: pointer"
+              shadow="hover"
+              :body-style="{ padding: '20px' }"
+            >
+              <div class="title-container" style="height: 350px; margin-bottom: 15px; display: flex; justify-content: center; align-items: center; background: #f5f5f5; border-radius: 8px; overflow: hidden;">
+                <el-image
+                  :src="previewData.image"
+                  style="max-height: 100%; max-width: 100%; width: auto; height: auto; object-fit: contain; transition: transform 0.3s ease;"
+                  :hover="{ transform: 'scale(1.05)' }"
+                />
+              </div>
+              <div style="margin-bottom: 15px">
+                <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 10px; color: #333"></h3>
+                <div class="content2" style="font-size: 14px; color: #666; width: 100%; overflow: hidden; display: flex; flex-direction: column">
+                  <div style="margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-shrink: 0">运动员：{{ previewData.userName }}</div>
+                  <div style="display: flex; justify-content: space-between; gap: 20px; flex-shrink: 0">
+                    <span>浏览：{{ previewData.views }}  </span>
+                    <span>点赞: {{ previewData.likes }}</span>
+                  </div>
+                </div>
+              </div>
+            </el-card>
+    </div>
   </div>
 </template>
 
@@ -243,15 +323,93 @@ const handleFileChange = (file, fileList) => {
   color: #7f7f7f;
   font-size: 13px;
 }
-.img-container {
-  height: 300px;
+
+.preview-container {
+  position: fixed;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+  width: 300px;
+  height: 70vh;
+  max-height: 700px;
+  z-index: 10;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.3) transparent;
   display: flex;
-  align-items: center;
   justify-content: center;
-  img {
-    max-height: 300px;
+  align-items: center;
+}
+
+.preview-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.preview-container::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.3);
+  border-radius: 4px;
+}
+
+.preview-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.preview-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s;
+  cursor: pointer;
+  width: 100%;
+  max-width: 250px;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  .preview-card-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .preview-card-content {
+    padding: 15px;
+
+    .preview-card-username {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .preview-card-stats {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: #888;
+    }
   }
 }
+
 .publish-container {
   height: 80vh;
   display: flex;
@@ -290,25 +448,5 @@ const handleFileChange = (file, fileList) => {
 
 .el-button:hover {
   background-color: #66b1ff;
-}
-
-.personal-center {
-  font-size: 18px;
-  color: #007bff;
-  text-decoration: underline;
-  margin: 10px 0;
-  cursor: pointer;
-  text-align: center;
-}
-.el-card-preview {
-  position: absolute;
-  right: 20px; /* 控制预览卡片的位置 */
-  top: 20px;
-  transition: transform 0.5s ease;
-  transform: translate(-250px, 200px);
-}
-
-.is-preview .el-card-preview {
-  transform: translate(0, 0);
 }
 </style>
