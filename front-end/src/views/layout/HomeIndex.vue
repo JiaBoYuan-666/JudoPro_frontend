@@ -1,9 +1,11 @@
 <script setup>
 import { Connection, Search, User } from '@element-plus/icons-vue'
 import { ref } from 'vue'
-import { Menu as IconMenu, Location, Setting,Avatar } from '@element-plus/icons-vue'
+import { Menu as IconMenu, Location, Setting, Avatar, CircleCloseFilled } from '@element-plus/icons-vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useSearchStore, useUserStore } from '@/stores/index.js'
+import JudoModel3D from '@/components/JudoModel3D.vue'
+import Deepseek from '@/components/deepseek.vue'
 
 const isCollapse = ref(true)
 const route = useRoute()
@@ -11,6 +13,7 @@ const router = useRouter()
 const userStore = useUserStore()
 const modelName = ref('')
 const drawer = ref(false)
+const modelDrawer = ref(false)
 const searchStore = useSearchStore()
 const onSearch = () => {
   if (route.path !== '/discovery') router.push('/discovery')
@@ -43,7 +46,7 @@ const handleSelect = (key, keyPath) => {
       width: auto;
     "
   />
-  <span @click="router.push('/')" style="font-size: 24px; font-weight: bold; color: #333">Judopro智训平台</span>
+  <span @click="router.push('/')" style="font-size: 24px; font-weight: bold; color: #ffffff; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">Judopro智训平台</span>
 </div>
       <!-- <div class="search-box" style="position: relative; left: 100px">
         <el-input
@@ -60,40 +63,57 @@ const handleSelect = (key, keyPath) => {
       <div class="user-box" style="margin-left: 10px">
         <div v-if="userStore.user">
           {{ userStore.user.name }}，您好
-          <el-button type="danger" @click="userStore.removeUser()">退出登录</el-button>
+          <el-button type="danger" style="background: linear-gradient(45deg, #ff5722, #ff9800); border: none; font-weight: bold;" @click="userStore.removeUser()">退出登录</el-button>
         </div>
         <div v-else>
           未登录
-          <el-button type="success" @click="router.push('/login')">立即登录</el-button>
+          <el-button type="success" style="background: linear-gradient(45deg, #4caf50, #8bc34a); border: none; font-weight: bold;" @click="router.push('/login')">立即登录</el-button>
         </div>
       </div>
 
-      <el-button 
-        type="primary" 
-        @click="drawer = true"
-        style="
-          font-size: 18px;
-          font-weight: bold;
-          padding: 15px 25px;
-          background: linear-gradient(45deg, #409eff, #36b3ff);
-          border: none;
-          box-shadow: 0 4px 12px rgba(64, 158, 255, 0.5);
-          transition: all 0.3s ease;
-          margin-left: 20px;
-        "
-        class="ai-assistant-btn"
-      >
-        AI助手
-      </el-button>
+      <div class="right-btn-group">
+        <el-button 
+          type="primary" 
+          @click="drawer = true"
+          class="ai-assistant-btn"
+        >
+          AI助手
+        </el-button>
+        <el-button 
+          type="primary" 
+          @click="modelDrawer = true"
+          class="model-btn"
+        >
+          3D柔道模型
+        </el-button>
+      </div>
   <el-drawer v-model="drawer" size="50%":show-close="false">
     <template #header="{ close, titleId, titleClass }">
-      <h4 :id="titleId" :class="titleClass">小助手</h4>
+      <h4 :id="titleId" :class="titleClass">柔道智能助手</h4>
       <el-button type="danger" @click="close">
         <CircleCloseFilled />
         关闭
       </el-button>
     </template>
-    <Deepseek />
+    <div class="drawer-content">
+      <div class="assistant-section">
+        <Deepseek />
+      </div>
+    </div>
+  </el-drawer>
+  <el-drawer v-model="modelDrawer" size="50%" :show-close="false">
+    <template #header="{ close, titleId, titleClass }">
+      <h4 :id="titleId" :class="titleClass">3D柔道模型展示</h4>
+      <el-button type="danger" @click="close">
+        <CircleCloseFilled />
+        关闭
+      </el-button>
+    </template>
+    <div class="drawer-content">
+      <div class="model-section">
+        <JudoModel3D class="judo-model" />
+      </div>
+    </div>
   </el-drawer>
       <!-- <el-menu
         default-active="1"
@@ -140,8 +160,7 @@ const handleSelect = (key, keyPath) => {
       <el-icon><location /></el-icon>
       <span>创作中心</span>
     </template>
-
-    <el-menu-item-group>
+    <el-menu-item-group style="margin-top: 0; background: #e8f4ff;">
       <el-menu-item index="/creative/publish">发布</el-menu-item>
       <!-- <el-menu-item index="/creative/draft">草稿</el-menu-item> -->
     </el-menu-item-group>
@@ -240,17 +259,53 @@ const handleSelect = (key, keyPath) => {
 .el-container {
   height: 100%;
   overflow: hidden;
+  background: #f5f9ff;
 }
 .el-row {
   height: 100%;
 }
 .el-header {
-  background-color: #ffffff;
-  color: #7f7f7f;
+  background: linear-gradient(135deg, #0066cc, #0099ff);
+  color: #ffffff;
   height: 10vh;
-  align-items: center; //垂直居中
+  align-items: center;
   display: flex;
-  justify-content: space-between; //水平居中
+  justify-content: space-between;
+  box-shadow: 0 2px 12px rgba(0, 102, 204, 0.3);
+  position: relative;
+}
+.right-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-right: 40px;
+}
+.ai-assistant-btn, .model-btn {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 15px 25px;
+  background: linear-gradient(45deg, #ff5722, #ff9800);
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(255, 87, 34, 0.5);
+  transition: all 0.3s ease;
+  color: #fff;
+}
+
+.ai-assistant-btn:hover, .model-btn:hover {
+  background: linear-gradient(45deg, #0066cc, #0099ff);
+  transform: scale(1.05);
+  color: #fff;
+}
+.model-btn {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 15px 25px;
+  background: linear-gradient(45deg, #009688, #4caf50);
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 150, 136, 0.5);
+  transition: all 0.3s ease;
 }
 
 .el-menu--horizontal > .el-menu-item:nth-child(1) {
@@ -264,18 +319,66 @@ const handleSelect = (key, keyPath) => {
   margin-top: 30px;
 }
 .el-aside {
-  background-color: #ffffff;
+  background: #e8f4ff;
   width: 235px;
   max-height: 90vh;
+  border-right: 1px solid rgba(0, 102, 204, 0.2);
+  box-shadow: 2px 0 10px rgba(0, 102, 204, 0.1);
 }
 .el-main {
-  background-color: #f7f7f7;
+  background-color: #f5f9ff;
   max-height: 90vh;
 }
 
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 235 px;
   min-height: 400px;
+}
+
+.el-menu-vertical-demo {
+  border-right: none;
+  background: #e8f4ff;
+}
+
+.el-menu-item {
+  transition: all 0.3s ease;
+  margin: 0;
+  padding: 0 20px;
+}
+
+.el-menu-item:hover, .el-menu-item.is-active {
+  background: rgba(0, 102, 204, 0.15);
+  color: #0066cc !important;
+  font-weight: bold;
+  border-left: 3px solid #0066cc;
+}
+
+.el-sub-menu__title:hover {
+  background: rgba(0, 102, 204, 0.1);
+  color: #0066cc;
+}
+
+.el-sub-menu__title {
+  background: #e8f4ff;
+  margin: 0;
+  padding: 0 20px;
+}
+
+.el-menu-item-group__title {
+  padding: 0;
+  background: #e8f4ff;
+}
+
+.el-menu--popup {
+  background: #e8f4ff;
+  padding: 0;
+  margin: 0;
+}
+
+.el-menu--popup .el-menu-item {
+  background: #e8f4ff;
+  margin: 0;
+  padding: 0 20px;
 }
 
 .el-row {
@@ -297,18 +400,59 @@ const handleSelect = (key, keyPath) => {
   border: 1px solid transparent; /* 初始边框设置为透明 */
   transition:
     border-color 0.3s,
-    border-radius 0.3s; /* 添加过渡效果 */
+    border-radius 0.3s,
+    transform 0.3s; /* 添加过渡效果 */
 
   &:hover {
-    border-color: black; /* 鼠标悬浮时边框变为黑色 */
+    border-color: #0066cc; /* 鼠标悬浮时边框变为蓝色 */
     border-radius: 10px; /* 鼠标悬浮时边框变为圆角 */
     cursor: pointer; /* 改变鼠标指针为手型 */
+    transform: translateY(-3px); /* 添加上浮效果，增强动感 */
+    box-shadow: 0 5px 15px rgba(255, 87, 34, 0.2); /* 添加阴影效果 */
   }
 }
 
 .ai-assistant-btn:hover {
-  background: linear-gradient(45deg, #36b3ff, #409eff);
+  background: linear-gradient(45deg, #0066cc, #0099ff);
   transform: scale(1.05);
+}
+
+/* 抽屉内容样式 */
+.drawer-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.section-title {
+  color: #0066cc;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 102, 204, 0.2);
+}
+
+.model-section {
+  flex: 0 0 auto;
+  height: 500px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 102, 204, 0.2);
+}
+
+.judo-model {
+  width: 100%;
+  height: 100%;
+}
+
+.assistant-section {
+  flex: 1;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 102, 204, 0.2);
 }
 .content2 {
   display: flex;

@@ -11,7 +11,6 @@ const router = useRouter()
 const userStore = useUserStore()
 
 const user = ref({
-  data: null,
   username: '',
   password: '',
   name: '',
@@ -56,23 +55,16 @@ const rules = {
 }
 
 // 处理登录/注册按钮点击事件
-// 请求类型：0-无，1-登录，2-注册
-const requestType = ref(0)
-const getRandomType = () => {
-  return Math.floor(Math.random() * 2) ? 'blockPuzzle' : 'clickWord'
-}
 const onLogin = () => {
   if (user.value.username === '' || user.value.password === '') {
     ElMessage.error('用户名或密码不能为空')
     return
   }
-  requestType.value = 1
-  onShow(getRandomType())
+  requestLogin()
 }
 const onRegister = async () => {
   await form.value.validate()
-  requestType.value = 2
-  onShow(getRandomType())
+  requestRegister()
 }
 
 const requestLogin = async () => {
@@ -84,7 +76,6 @@ const requestLogin = async () => {
   const res = await userLoginService(user.value).catch((res) => {
     ElMessage.error(res.response.data.message)
   })
-  requestType.value = 0
   loading.close()
 
   if (res.data.code === 0) {
@@ -104,38 +95,13 @@ const requestRegister = async () => {
   const res = await userRegisterService(user.value).catch((res) => {
     ElMessage.error(res.response.data.message)
   })
-  requestType.value = 0
   loading.close()
 
   if (res.data.code === 0) ElMessage.success(res.data.message)
   else ElMessage.error(res.data.message)
 }
 
-// 验证码相关
-import Verify from '@/components/Verify.vue'
 
-const verify = ref(null)
-const captchaType = ref('')
-const onShow = (type) => {
-  captchaType.value = type
-  verify.value.show()
-}
-const handleSuccess = (res) => {
-  // 保存二次校验参数
-  user.value.data = res
-  switch (requestType.value) {
-    case 0:
-      return
-    case 1:
-      requestLogin()
-      break
-    case 2:
-      requestRegister()
-      break
-    default:
-      break
-  }
-}
 let flag = true
 const mySwitch = () => {
   if (flag) {
@@ -245,14 +211,7 @@ const mySwitch = () => {
       </div>
     </div>
   </div>
-  <!-- 验证码 -->
-  <Verify
-    @success="handleSuccess"
-    mode="pop"
-    :captchaType="captchaType"
-    :imgSize="{ width: '400px', height: '200px' }"
-    ref="verify"
-  ></Verify>
+
 </template>
 
 <style scoped lang="scss">

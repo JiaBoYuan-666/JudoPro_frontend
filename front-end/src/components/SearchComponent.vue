@@ -76,7 +76,7 @@ export default {
       try {
         const { data: res } = await request.get('query/kw', {
           params: { pageNo: 1, pageSize: 8, kw: this.kw },
-        })
+        })//向后端发送GET请求
         if (res && res.success) {
           this.results = res.data || []
           if (!this.results.length) {

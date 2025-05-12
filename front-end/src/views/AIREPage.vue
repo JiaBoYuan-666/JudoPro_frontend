@@ -1,15 +1,24 @@
 <template>
   <div class="analysis-container">
+    <el-button type="primary" @click="goBack" class="back-button">
+      返回上一页
+    </el-button>
     <dpanalysis :athlete-meta="processedData" />
   </div>
 </template>
 
 <script>
 import dpanalysis from '@/components/dpanalysis.vue'
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'AIREPage',
   components: { dpanalysis },
+  setup() {
+    const router = useRouter()
+    const goBack = () => router.back()
+    return { goBack }
+  },
   computed: {
     processedData() {
       try {
@@ -36,6 +45,16 @@ export default {
 </script>
 
 <style scoped>
+.back-button {
+  align-self: flex-start;
+  margin: 16px;
+}
+
+.analysis-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .container {
   padding: 20px;
   max-width: 800px;
