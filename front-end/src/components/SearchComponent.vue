@@ -48,13 +48,10 @@
 
 <script>
 import request from '@/utils/request.js'
-
-
 import { useRouter } from 'vue-router'
 
 export default {
   name: 'SearchComponentPage',
-  components: { ElImage },
   setup() {
     const router = useRouter()
     return { router }
@@ -76,9 +73,16 @@ export default {
       try {
         const { data: res } = await request.get('query/kw', {
           params: { pageNo: 1, pageSize: 8, kw: this.kw },
-        })//向后端发送GET请求
+        })
         if (res && res.success) {
           this.results = res.data || []
+          // 处理KG字段，去掉前面的横杠
+          this.results = this.results.map(item => {
+            if (item.KG && typeof item.KG === 'string' && item.KG.startsWith('-')) {
+              item.KG = item.KG.substring(1)
+            }
+            return item
+          })
           if (!this.results.length) {
             ElMessage.info('未找到相关结果')
           }
