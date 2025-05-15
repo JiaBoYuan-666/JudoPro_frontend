@@ -13,6 +13,12 @@ const router = createRouter({
       props: true
     },
     {
+      path: '/details/:athleteData',
+      name: 'DetailsPage',
+      component: () => import('@/views/details/DetailsPage.vue'),
+      props: true
+    },
+    {
       path: '/',
       name: 'home',
       redirect: '/intro',
