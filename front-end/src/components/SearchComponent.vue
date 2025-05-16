@@ -85,7 +85,7 @@
       <el-table-column label="操作" :min-width="120" fixed="right">
         <template #default="{ row }">
           <el-button size="small" type="primary" @click.stop="viewDetails(row)">
-            查看详情
+            AI分析
           </el-button>
         </template>
       </el-table-column>
