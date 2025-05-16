@@ -1,22 +1,27 @@
 <template>
-  <div class="SearchComponentPage">
-    <el-input
-      v-model="kw"
-      placeholder="请输入关键词"
-      class="kw-input"
-      style="width: 300px; margin-right: 10px"
-      @keyup.enter="search"
-    />
-    <el-button type="primary" @click="search">搜索</el-button>
+  <div class="SearchComponentPage" :class="{ 'searched': hasSearched }">
+    <div class="search-container">
+      <h2 class="search-title">运动员信息检索</h2>
+      <div class="search-box">
+        <el-input
+          v-model="kw"
+          placeholder="请输入关键词"
+          class="kw-input"
+          style="width: 300px; margin-right: 10px"
+          @keyup.enter="search"
+        />
+        <el-button type="primary" @click="search">搜索</el-button>
+      </div>
+    </div>
 
-    <el-table
-      v-loading="loading"
-      element-loading-text="加载中..."
-      :data="results"
-      style="width: 100%; margin-top: 20px; table-layout: fixed;"
-      v-if="results.length"
-      @row-click="handleRowClick"
-    >
+    <div class="table-container" v-if="results.length">
+      <el-table
+        v-loading="loading"
+        element-loading-text="加载中..."
+        :data="results"
+        style="width: 100%; margin-top: 20px; table-layout: fixed;"
+        @row-click="handleRowClick"
+      >
       <el-table-column prop="ID" label="ID" :min-width="60" />
       <el-table-column prop="NAME" label="名称" :min-width="120" />
       <el-table-column prop="AGE" label="年龄" :min-width="80" />
@@ -84,7 +89,8 @@
           </el-button>
         </template>
       </el-table-column>
-    </el-table>
+      </el-table>
+    </div>
   </div>
 </template>
 
@@ -107,6 +113,7 @@ export default {
       kw: '',
       results: [],
       loading: false,
+      hasSearched: false,
     }
   },
   methods: {
@@ -116,6 +123,8 @@ export default {
         return
       }
       this.loading = true
+      // 设置已搜索状态，触发动画
+      this.hasSearched = true
       // 触发search事件，用于通知父组件搜索已开始
       this.$emit('search', this.kw)
       try {
@@ -210,9 +219,116 @@ export default {
 <style scoped>
 .SearchComponentPage {
   padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+  position: relative;
 }
 
-/* 均匀列间距 */
+.search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  width: 100%;
+  z-index: 10;
+}
+
+.search-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #0066cc;
+  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-weight: bold;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+
+.SearchComponentPage:not(.searched) .search-container {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 0;
+}
+
+
+.SearchComponentPage:not(.searched) .search-title {
+  opacity: 1;
+  transform: scale(1.05);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.SearchComponentPage.searched .search-container {
+  position: relative;
+  top: 0;
+  left: 0;
+  transform: none;
+  align-items: flex-start;
+  margin-top: 0;
+  transition-delay: 0.1s;
+}
+
+.SearchComponentPage.searched .search-title {
+  font-size: 22px;
+  margin-bottom: 15px;
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 表格动画效果 */
+:deep(.el-table) {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.4s;
+}
+
+.SearchComponentPage.searched :deep(.el-table) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 表格容器动画 */
+.table-container {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.4s;
+}
+
+.SearchComponentPage.searched .table-container {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.SearchComponentPage:not(.searched) {
+  overflow: hidden;
+  height: 100%;
+}
+
+
+.SearchComponentPage:not(.searched) .search-box {
+  justify-content: center;
+  width: 100%;
+}
+
+
+.SearchComponentPage * {
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  will-change: transform, opacity;
+}
+
 .el-table th,
 .el-table td {
   padding: 8px 12px;
@@ -224,12 +340,10 @@ export default {
   transition: background-color 0.3s ease;
 }
 
-/* 确保 el-image 预览浮层在最上层 */
 :deep(.el-image-viewer__wrapper) {
   z-index: 3000 !important;
 }
 
-/* 照片集预览样式 */
 .photos-preview {
   padding: 5px;
 }

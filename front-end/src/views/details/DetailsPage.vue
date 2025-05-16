@@ -37,30 +37,64 @@
         </div>
       </div>
       
-      <div class="athlete-photos" v-if="photos.length">
+      <div class="athlete-photos" v-if="spotlightPhotos.length || normalPhotos.length">
         <h2 class="section-title">照片集</h2>
-        <div class="photos-grid">
-          <div 
-            v-for="(photo, index) in photos" 
-            :key="index"
-            class="photo-container"
-          >
-            <el-image 
-              :src="photo.url || photo"
-              :preview-src-list="photoUrls"
-              :initial-index="index"
-              fit="cover"
-              :preview-teleported="true"
-              class="photo-item"
+        
+        <!-- Under the spotlights 照片 -->
+        <div v-if="spotlightPhotos.length" class="photo-section">
+          <h3 class="subsection-title">Under the spotlights</h3>
+          <div class="photos-grid">
+            <div 
+              v-for="(photo, index) in spotlightPhotos" 
+              :key="'spotlight-'+index"
+              class="photo-container"
             >
-              <template #error>
-                <div class="image-error">
-                  <el-icon><Picture /></el-icon>
-                  <span>加载失败</span>
-                </div>
-              </template>
-            </el-image>
-            <div v-if="photo.title" class="photo-title" :title="photo.title">{{ photo.title }}</div>
+              <el-image 
+                :src="photo.url || photo"
+                :preview-src-list="photoUrls"
+                :initial-index="photoUrls.indexOf(photo.url || photo)"
+                fit="cover"
+                :preview-teleported="true"
+                class="photo-item"
+              >
+                <template #error>
+                  <div class="image-error">
+                    <el-icon><Picture /></el-icon>
+                    <span>加载失败</span>
+                  </div>
+                </template>
+              </el-image>
+              <div v-if="photo.title" class="photo-title" :title="photo.title">{{ photo.title }}</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 普通照片 -->
+        <div v-if="normalPhotos.length" class="photo-section">
+          <h3 class="subsection-title">Photos</h3>
+          <div class="photos-grid">
+            <div 
+              v-for="(photo, index) in normalPhotos" 
+              :key="'normal-'+index"
+              class="photo-container"
+            >
+              <el-image 
+                :src="photo.url || photo"
+                :preview-src-list="photoUrls"
+                :initial-index="photoUrls.indexOf(photo.url || photo)"
+                fit="cover"
+                :preview-teleported="true"
+                class="photo-item"
+              >
+                <template #error>
+                  <div class="image-error">
+                    <el-icon><Picture /></el-icon>
+                    <span>加载失败</span>
+                  </div>
+                </template>
+              </el-image>
+              <div v-if="photo.title" class="photo-title" :title="photo.title">{{ photo.title }}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -97,8 +131,9 @@ export default {
   },
   data() {
     return {
-      photos: [],
-      photoUrls: []
+      spotlightPhotos: [],  // Under the spotlights 照片
+      normalPhotos: [],     // 普通照片
+      photoUrls: []         // 所有照片URL用于预览
     }
   },
   computed: {
@@ -139,19 +174,22 @@ export default {
       
       try {
         const photos = JSON.parse(photosStr)
+        // 重置照片数组
+        this.spotlightPhotos = []
+        this.normalPhotos = []
+        
         if (Array.isArray(photos)) {
-          // 处理纯字符串URL数组
-          this.photos = photos.filter(url => url && typeof url === 'string')
+          // 处理纯字符串URL数组 - 全部作为普通照片处理
+          this.normalPhotos = photos.filter(url => url && typeof url === 'string')
             .map(url => ({ url })) // 转换为对象格式以统一处理
         } else {
           // 处理对象格式的照片数据
           if (photos.underTheSpotlights && Array.isArray(photos.underTheSpotlights)) {
             // 确保每个元素都是对象格式
-            const spotlightPhotos = photos.underTheSpotlights.map(photo => {
+            this.spotlightPhotos = photos.underTheSpotlights.map(photo => {
               if (typeof photo === 'object') return photo
               return { url: photo }
             })
-            this.photos.push(...spotlightPhotos)
           }
           
           if (photos.photos && Array.isArray(photos.photos)) {
@@ -159,25 +197,26 @@ export default {
             photos.photos.forEach(photo => {
               if (typeof photo === 'object' && photo.url) {
                 // 已经是对象格式，直接添加
-                this.photos.push(photo)
+                this.normalPhotos.push(photo)
               } else if (typeof photo === 'string') {
                 // 字符串格式转为对象格式
-                this.photos.push({ url: photo })
+                this.normalPhotos.push({ url: photo })
               }
             })
           }
           
-          // 如果存在urls字段，也加入解析
+          // 如果存在urls字段，也加入解析 - 作为普通照片处理
           if (photos.urls && Array.isArray(photos.urls)) {
-            this.photos.push(...photos.urls.map(url => {
+            this.normalPhotos.push(...photos.urls.map(url => {
               // 确保每个URL都转换为对象格式
               return typeof url === 'object' ? url : { url }
             }))
           }
         }
         
-        // 提取所有URL用于预览
-        this.photoUrls = this.photos.map(photo => photo.url || photo)
+        // 提取所有URL用于预览 - 合并两类照片的URL
+        const allPhotos = [...this.spotlightPhotos, ...this.normalPhotos]
+        this.photoUrls = allPhotos.map(photo => photo.url || photo)
       } catch (err) {
         console.error('解析照片数据失败:', err)
       }
@@ -269,6 +308,17 @@ export default {
   margin: 24px 0 16px;
   padding: 0 24px;
   color: #333;
+}
+
+.subsection-title {
+  font-size: 16px;
+  margin: 12px 0;
+  padding: 0 24px;
+  color: #606266;
+}
+
+.photo-section {
+  margin-bottom: 20px;
 }
 
 .athlete-photos {

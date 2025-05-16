@@ -328,6 +328,7 @@ const handleSelect = (key, keyPath) => {
 .el-main {
   background-color: #f5f9ff;
   max-height: 90vh;
+  overflow: auto;
 }
 
 .el-menu-vertical-demo:not(.el-menu--collapse) {
