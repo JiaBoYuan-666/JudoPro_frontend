@@ -106,7 +106,7 @@ getPage()
               <div style="margin-bottom: 15px">
                 <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 10px; color: #333">{{ item.name }}</h3>
                 <div class="content2" style="font-size: 14px; color: #666; width: 100%; overflow: hidden; display: flex; flex-direction: column">
-                  <div style="margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-shrink: 0" :title="item.userName">运动员：{{ item.userName }}</div>
+                  <div style="margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-shrink: 0" :title="item.userName">视频标题：{{ item.userName }}</div>
                   <div style="display: flex; justify-content: space-between; gap: 20px; flex-shrink: 0">
                     <span>浏览：{{ item.views }}  </span>
                     <span>点赞: {{ item.likes }}</span>
