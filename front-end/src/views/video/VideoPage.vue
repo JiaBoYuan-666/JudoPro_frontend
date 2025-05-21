@@ -5,40 +5,40 @@ const route = useRoute()
 const mockData = [
   { 
     id: 1, 
-    videoSrc: '/src/assets/video.mp4', 
+    videoSrc: '/src/assets/video1.mp4', 
     coverSrc: '/src/assets/学校logo.jpeg', 
-    videoTitle: '视频标题', 
-    videoDescription: '视频简介：这是一段演示视频。社会发展离不开社会思潮的影响，而社会思潮的引导离不开新闻传播的作用。传统与现代从来都不是一对相互对立的词语，随着人类社会的不断进步，传统思想必然要朝向现代思想进行转变，但是传统思想的禁锢并不是轻易就可以被打破的，而且在传统阶级社会中，统治者为了维护自身权益所形成的思想文化已经形成了巨大的思想牢笼，人们要想从这个牢笼中脱离出来就必须拥有钥匙，而新闻传播就充分的发挥了钥匙的作用，通过对现代化思想的报道和解析，新闻传播有效的解开了传统思想覆盖在人们身上的枷锁，给了人们自由选择生活的机会。'
+    videoTitle: '奥东武道柔道俱乐部【膝车】技术动作讲解', 
+    videoDescription: '视频简介：无'
   },{ 
     id: 2, 
-    videoSrc: '/src/assets/video.mp4', 
+    videoSrc: '/src/assets/video2.mp4', 
     coverSrc: '/src/assets/学校logo.jpeg', 
-    videoTitle: '我是第二个视频', 
-    videoDescription: '第二个视频'
+    videoTitle: '柔道，柔术教学【腕挫十字固】', 
+    videoDescription: '视频简介：无'
   },{ 
     id: 3, 
-    videoSrc: '/src/assets/video.mp4', 
+    videoSrc: '/src/assets/video3.mp4', 
     coverSrc: '/src/assets/学校logo.jpeg', 
-    videoTitle: '我是第3个视频', 
-    videoDescription: '第3个视频'
+    videoTitle: '柔道寝技教学【袈裟固】的衔接技术', 
+    videoDescription: '视频简介：无'
   },{ 
     id: 4, 
-    videoSrc: '/src/assets/video.mp4', 
+    videoSrc: '/src/assets/video4.mp4', 
     coverSrc: '/src/assets/学校logo.jpeg', 
-    videoTitle: '我是第4个视频', 
-    videoDescription: '第4个视频'
+    videoTitle: '柔道寝技教学【肩甲固】', 
+    videoDescription: '视频简介：无'
   },{ 
     id: 5, 
-    videoSrc: '/src/assets/video.mp4', 
+    videoSrc: '/src/assets/video5.mp4', 
     coverSrc: '/src/assets/学校logo.jpeg', 
-    videoTitle: '我是第5个视频', 
-    videoDescription: '第5个视频'
+    videoTitle: '柔道寝技教学【三角绞】', 
+    videoDescription: '视频简介：无'
   },{ 
     id: 6, 
-    videoSrc: '/src/assets/video.mp4', 
+    videoSrc: '/src/assets/video6.mp4', 
     coverSrc: '/src/assets/学校logo.jpeg', 
-    videoTitle: '我是第6个视频', 
-    videoDescription: '第6个视频'
+    videoTitle: '柔道寝技教学【三角绞】的变化系列', 
+    videoDescription: '视频简介：无'
   },{ 
     id: 7, 
     videoSrc: '/src/assets/video.mp4', 

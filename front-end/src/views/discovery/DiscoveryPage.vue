@@ -20,99 +20,51 @@ const mockData = [
   {
     id: 1,
     // name: 'video1',
-    userName: 'safdadssdafasdfasfsfdsafasdfsfsfasddasfdsafsaasdf',
-    views: 100333333333,
-    likes: 5033333333333,
-    image: '/src/assets/video1.png'
+    userName: '奥东武道柔道俱乐部【膝车】技术动作讲解',
+    views: 10,
+    likes: 50,
+    image: '/src/assets/video1.jpg'
   },
   {
     id: 2,
     // name: 'video2',
-    userName: 'Test User',
+    userName: '柔道，柔术教学【腕挫十字固】',
     views: 200,
     likes: 100,
-    image: '/src/assets/video2.png'
+    image: '/src/assets/video2.jpg'
   },
   {
     id: 3,
     // name: 'video3',
-    userName: 'Test User',
+    userName: '柔道寝技教学【袈裟固】的衔接技术',
     views: 100,
     likes: 50,
-    image: '/src/assets/video3.png'
+    image: '/src/assets/video3.jpg'
   },
   {
     id: 4,
     // name: 'video4',
-    userName: 'Test User',
+    userName: '柔道寝技教学【肩甲固】',
     views: 200,
     likes: 100,
-    image: '/src/assets/video4.png'
+    image: '/src/assets/video4.jpg'
   },
   {
     id: 5,
     // name: 'video5',
-    userName: 'Test User',
+    userName: '柔道寝技教学【三角绞】',
     views: 100,
     likes: 50,
-    image: '/src/assets/video5.png'
-  },
-  {
+    image: '/src/assets/video5.jpg'
+  }, {
     id: 6,
-    // name: 'video6',
-    userName: 'Test User',
-    views: 200,
-    likes: 100,
-    image: '/src/assets/video1.png'
-  },
-  {
-    id: 7,
-    // name: 'video1',
-    userName: 'Test User',
-    views: 100,
-    likes: 50,
-    image: '/src/assets/video7.png'
-  },
-  {
-    id: 8,
-    // name: 'video2',
-    userName: 'Test User',
-    views: 200,
-    likes: 100,
-    image: '/src/assets/video8.png'
-  },
-  {
-    id: 9,
-    // name: 'video3',
-    userName: '测试',
-    views: 100,
-    likes: 50,
-    image: '/src/assets/video长.png'
-  },
-  {
-    id: 10,
-    // name: 'video4',
-    userName: '测试',
-    views: 200,
-    likes: 100,
-    image: '/src/assets/video高.png'
-  },
-  {
-    id:11,
     // name: 'video5',
-    userName: 'Test User',
+    userName: '柔道寝技教学【三角绞】的变化系列',
     views: 100,
     likes: 50,
-    image: '/src/assets/video5.png'
+    image: '/src/assets/video6.jpg'
   },
-  {
-    id:12,
-    // name: 'video6',
-    userName: 'Test User',
-    views: 200,
-    likes: 100,
-    image: '/src/assets/video6.png'
-  }
+  
 ]
 
 const getPage = async () => {
