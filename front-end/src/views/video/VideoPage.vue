@@ -5,44 +5,44 @@ const route = useRoute()
 const mockData = [
   { 
     id: 1, 
-    videoSrc: '/src/assets/video1.mp4', 
-    coverSrc: '/src/assets/学校logo.jpeg', 
+    videoSrc: new URL('@/assets/video1.mp4', import.meta.url).href,
+    coverSrc: new URL('@/assets/学校logo.jpeg', import.meta.url).href,
     videoTitle: '奥东武道柔道俱乐部【膝车】技术动作讲解', 
     videoDescription: '视频简介：无'
   },{ 
     id: 2, 
-    videoSrc: '/src/assets/video2.mp4', 
-    coverSrc: '/src/assets/学校logo.jpeg', 
+    videoSrc: new URL('@/assets/video2.mp4', import.meta.url).href,
+    coverSrc:  new URL('@/assets/学校logo.jpeg', import.meta.url).href,
     videoTitle: '柔道，柔术教学【腕挫十字固】', 
     videoDescription: '视频简介：无'
   },{ 
     id: 3, 
-    videoSrc: '/src/assets/video3.mp4', 
-    coverSrc: '/src/assets/学校logo.jpeg', 
+    videoSrc: new URL('@/assets/video3.mp4', import.meta.url).href,
+    coverSrc:  new URL('@/assets/学校logo.jpeg', import.meta.url).href, 
     videoTitle: '柔道寝技教学【袈裟固】的衔接技术', 
     videoDescription: '视频简介：无'
   },{ 
     id: 4, 
-    videoSrc: '/src/assets/video4.mp4', 
-    coverSrc: '/src/assets/学校logo.jpeg', 
+    videoSrc: new URL('@/assets/video4.mp4', import.meta.url).href,
+    coverSrc:  new URL('@/assets/学校logo.jpeg', import.meta.url).href, 
     videoTitle: '柔道寝技教学【肩甲固】', 
     videoDescription: '视频简介：无'
   },{ 
     id: 5, 
-    videoSrc: '/src/assets/video5.mp4', 
-    coverSrc: '/src/assets/学校logo.jpeg', 
+    videoSrc:new URL('@/assets/video5.mp4', import.meta.url).href,
+    coverSrc:  new URL('@/assets/学校logo.jpeg', import.meta.url).href,
     videoTitle: '柔道寝技教学【三角绞】', 
     videoDescription: '视频简介：无'
   },{ 
     id: 6, 
-    videoSrc: '/src/assets/video6.mp4', 
-    coverSrc: '/src/assets/学校logo.jpeg', 
+    videoSrc: new URL('@/assets/video6.mp4', import.meta.url).href,
+    coverSrc:  new URL('@/assets/学校logo.jpeg', import.meta.url).href, 
     videoTitle: '柔道寝技教学【三角绞】的变化系列', 
     videoDescription: '视频简介：无'
   },{ 
     id: 7, 
-    videoSrc: '/src/assets/video.mp4', 
-    coverSrc: '/src/assets/学校logo.jpeg', 
+    videoSrc: '@/assets/video.mp4', 
+    coverSrc: '@/assets/学校logo.jpeg', 
     videoTitle: '7', 
     videoDescription: '视频简介：7'
   },{ 

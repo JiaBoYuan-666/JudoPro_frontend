@@ -23,7 +23,7 @@ const mockData = [
     userName: '奥东武道柔道俱乐部【膝车】技术动作讲解',
     views: 10,
     likes: 50,
-    image: '/src/assets/video1.jpg'
+    image: new URL('@/assets/video1.jpg', import.meta.url).href
   },
   {
     id: 2,
@@ -31,7 +31,7 @@ const mockData = [
     userName: '柔道，柔术教学【腕挫十字固】',
     views: 200,
     likes: 100,
-    image: '/src/assets/video2.jpg'
+    image: new URL('@/assets/video2.jpg', import.meta.url).href
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ const mockData = [
     userName: '柔道寝技教学【袈裟固】的衔接技术',
     views: 100,
     likes: 50,
-    image: '/src/assets/video3.jpg'
+    image: new URL('@/assets/video3.jpg', import.meta.url).href
   },
   {
     id: 4,
@@ -47,7 +47,7 @@ const mockData = [
     userName: '柔道寝技教学【肩甲固】',
     views: 200,
     likes: 100,
-    image: '/src/assets/video4.jpg'
+    image: new URL('@/assets/video4.jpg', import.meta.url).href
   },
   {
     id: 5,
@@ -55,14 +55,14 @@ const mockData = [
     userName: '柔道寝技教学【三角绞】',
     views: 100,
     likes: 50,
-    image: '/src/assets/video5.jpg'
+    image: new URL('@/assets/video4.jpg', import.meta.url).href
   }, {
     id: 6,
     // name: 'video5',
     userName: '柔道寝技教学【三角绞】的变化系列',
     views: 100,
     likes: 50,
-    image: '/src/assets/video6.jpg'
+    image: new URL('@/assets/video4.jpg', import.meta.url).href
   },
   
 ]

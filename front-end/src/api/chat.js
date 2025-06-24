@@ -2,18 +2,10 @@ import OpenAI from "openai";
 
 const deepseekOpenAI = new OpenAI({
   baseURL: 'https://api.deepseek.com',
-  apiKey: 'sk-bb7152657f8c4994b8dec6dff88d6460',
+  apiKey: 'sk-23132152df0640ea9cfae4fd55f27084',
   dangerouslyAllowBrowser: true
 });
 
-const openrouterOpenAI = new OpenAI({
-  baseURL: 'https://openrouter.ai/api/v1',
-  apiKey: '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',
-  dangerouslyAllowBrowser: true,
-  defaultHeaders: {
-    "X-Title": "JudoPro"
-  }
-});
 
 const formatMessages = (messages, isReasoner) => {
   const recentMessages = messages.slice(-10);

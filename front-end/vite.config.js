@@ -11,7 +11,7 @@ export default defineConfig({
     proxy: {
 
       '/api': {
-        target: 'http://localhost:8080',  // 后端服务地址
+        target: 'http://10.199.201.199:8889',  // 新的后端服务地址
         changeOrigin: true,               // 修改请求头中的 Host
         rewrite: (path) => path.replace(/^\/api/, ''), // 去掉 /api 前缀
         // secure: false, // 如果后端是 HTTPS 且使用自签名，可开启此项
@@ -34,4 +34,4 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   }
-}) 
+})
